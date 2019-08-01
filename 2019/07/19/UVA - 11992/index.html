@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>CodeForces - 12D Ball 线段树 - GenmCai</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="题目意思就是，road命令连接第A坐标和第B坐标的点。而line则是查看纵坐标C拉出的扫描线过几个联通块，而联通块中的数量和是多少。（具体的可以查看原题）">
+<meta name="keywords" content="ACM,线段树,并查集,模拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CodeForces - 12D Ball 线段树">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/UVA - 11992/index.html">
+<meta property="og:site_name" content="GenmCai">
+<meta property="og:description" content="题目意思就是，road命令连接第A坐标和第B坐标的点。而line则是查看纵坐标C拉出的扫描线过几个联通块，而联通块中的数量和是多少。（具体的可以查看原题）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://i2.tiimg.com/695816/ab92da7e4bbd7680.jpg">
+<meta property="og:updated_time" content="2019-08-01T14:03:52.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CodeForces - 12D Ball 线段树">
+<meta name="twitter:description" content="题目意思就是，road命令连接第A坐标和第B坐标的点。而line则是查看纵坐标C拉出的扫描线过几个联通块，而联通块中的数量和是多少。（具体的可以查看原题）">
+<meta name="twitter:image" content="http://i2.tiimg.com/695816/ab92da7e4bbd7680.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/app.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="CodeForces - 12D Ball 线段树" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="https://github.com/GenmCai">Github</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="http://i2.tiimg.com/695816/ab92da7e4bbd7680.jpg" alt="CodeForces - 12D Ball 线段树">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-19T10:55:21.000Z">2019-07-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 842 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                CodeForces - 12D Ball 线段树
+            
+        </h1>
+        <div class="content">
+            <p><img src="https://uploadfiles.nowcoder.com/images/20190727/359061375_1564220171469_98440C22B5725D103FF7A72033C09D97" alt="图片说明" title="UVA-11992"><br>题目意思就是，road命令连接第A坐标和第B坐标的点。而line则是查看纵坐标C拉出的扫描<br>线过几个联通块，而联通块中的数量和是多少。（具体的可以查看原题）</p>
+<a id="more"></a>
+<p>题解：其实是线段树一个简单的模拟，即并查集找联通块和联通块中点的数量，然后每次更<br>新删除A点和B点的信息，重新建立A点和B点连接后的信息就行了。</p>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> se second</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> P pair<span class="hljs-meta-string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PLL pair<span class="hljs-meta-string">&lt;ll,ll&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca(x) scanf(<span class="hljs-meta-string">"%d"</span>,&amp;x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca2(x,y) scanf(<span class="hljs-meta-string">"%d%d"</span>,&amp;x,&amp;y)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca3(x,y,z) scanf(<span class="hljs-meta-string">"%d%d%d"</span>,&amp;x,&amp;y,&amp;z)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl(x) scanf(<span class="hljs-meta-string">"%lld"</span>,&amp;x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl2(x,y) scanf(<span class="hljs-meta-string">"%lld%lld"</span>,&amp;x,&amp;y)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl3(x,y,z) scanf(<span class="hljs-meta-string">"%lld%lld%lld"</span>,&amp;x,&amp;y,&amp;z)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Pri(x) printf(<span class="hljs-meta-string">"%d\n"</span>,x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Prl(x) printf(<span class="hljs-meta-string">"%lld\n"</span>,x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> For(i,x,y) for(int i=x;i&lt;=y;i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _For(i,x,y) for(int i=x;i&gt;=y;i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FAST_IO std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF=<span class="hljs-number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> ll INFL=<span class="hljs-number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> Pi = <span class="hljs-built_in">acos</span>(<span class="hljs-number">-1.0</span>);</span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">void</span> <span class="hljs-title">tomax</span>(<span class="hljs-title">T</span>&amp;<span class="hljs-title">a</span>,<span class="hljs-title">T</span> <span class="hljs-title">b</span>)&#123;</span> a=max(a,b); &#125; </span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">void</span> <span class="hljs-title">tomin</span>(<span class="hljs-title">T</span>&amp;<span class="hljs-title">a</span>,<span class="hljs-title">T</span> <span class="hljs-title">b</span>)&#123;</span> a=min(a,b); &#125;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">5</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Segt</span>&#123;</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> lc (p&lt;&lt;1)</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rc (p&lt;&lt;1|1)</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MID (tree[p].l+tree[p].r)&gt;&gt;1</span></span><br><span class="line">    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tree</span>&#123;</span></span><br><span class="line">        <span class="hljs-keyword">int</span> l,r;</span><br><span class="line">        <span class="hljs-keyword">int</span> uck,val,lz[<span class="hljs-number">2</span>];</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right)</span></span>&#123; l=left; r=right; uck=<span class="hljs-number">0</span>; val=<span class="hljs-number">0</span>; lz[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>; lz[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>; &#125;</span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">updata</span><span class="hljs-params">(<span class="hljs-keyword">int</span> uckv,<span class="hljs-keyword">int</span> valv)</span></span>&#123; uck+=uckv; val+=valv; lz[<span class="hljs-number">0</span>]+=uckv; lz[<span class="hljs-number">1</span>]+=valv; &#125;</span><br><span class="line">    &#125;tree[N&lt;&lt;<span class="hljs-number">2</span>|<span class="hljs-number">1</span>];</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span></span>&#123;  tree[p].uck=tree[lc].uck+tree[rc].uck;  tree[p].val=tree[lc].val+tree[rc].val; &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushup</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> one=tree[p].lz[<span class="hljs-number">0</span>],two=tree[p].lz[<span class="hljs-number">1</span>];</span><br><span class="line">        tree[lc].updata(one,two);</span><br><span class="line">        tree[rc].updata(one,two);</span><br><span class="line">        tree[p].lz[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>; tree[p].lz[<span class="hljs-number">1</span>]=<span class="hljs-number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">        tree[p]=Tree&#123;l,r,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;;</span><br><span class="line">        <span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> ;</span><br><span class="line">        <span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">        build(l,mid,lc);</span><br><span class="line">        build(mid+<span class="hljs-number">1</span>,r,rc);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">updata</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> uckv,<span class="hljs-keyword">int</span> valv)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(l&gt;r) <span class="hljs-keyword">return</span> ;</span><br><span class="line">        <span class="hljs-keyword">if</span>(tree[p].l&gt;=l&amp;&amp;tree[p].r&lt;=r)&#123; tree[p].updata(uckv,valv); <span class="hljs-keyword">return</span> ; &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span>(tree[p].lz[<span class="hljs-number">0</span>] || tree[p].lz[<span class="hljs-number">1</span>]) pushup(p);</span><br><span class="line">        <span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">        <span class="hljs-keyword">if</span>(l&lt;=mid) updata(l,r,lc,uckv,valv);</span><br><span class="line">        <span class="hljs-keyword">if</span>(r&gt;mid) updata(l,r,rc,uckv,valv);</span><br><span class="line">        pushdown(p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-function">P <span class="hljs-title">getans</span><span class="hljs-params">(<span class="hljs-keyword">int</span> pos,<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(tree[p].l==pos &amp;&amp; tree[p].r==pos) <span class="hljs-keyword">return</span> MP(tree[p].uck,tree[p].val);</span><br><span class="line">        <span class="hljs-keyword">if</span>(tree[p].lz[<span class="hljs-number">0</span>] || tree[p].lz[<span class="hljs-number">1</span>]) pushup(p);</span><br><span class="line">        <span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">        <span class="hljs-keyword">if</span>(pos&lt;=mid) <span class="hljs-keyword">return</span> getans(pos, lc);</span><br><span class="line">        <span class="hljs-keyword">if</span>(pos&gt;mid) <span class="hljs-keyword">return</span> getans(pos, rc);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;t;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Up</span>&#123;</span> <span class="hljs-keyword">int</span> minn,maxx; &#125; up[N];</span><br><span class="line"><span class="hljs-keyword">int</span> num[N],tmp[N],uck[N],ans[N];</span><br><span class="line"><span class="hljs-keyword">int</span> len=<span class="hljs-number">0</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>&#123; <span class="hljs-keyword">return</span> uck[x]==x ? x : uck[x]=find(uck[x]); &#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    int t1(find(x)),t2(find(y));</span><br><span class="line">    <span class="hljs-keyword">if</span>(t1!=t2)&#123;</span><br><span class="line">        t.updata(up[t1].minn+<span class="hljs-number">1</span>,up[t1].maxx,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,-ans[t1]);</span><br><span class="line">        t.updata(up[t2].minn+<span class="hljs-number">1</span>,up[t2].maxx,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,-ans[t2]);</span><br><span class="line">        uck[t2]=t1;</span><br><span class="line">        ans[t1]+=ans[t2];</span><br><span class="line">        tomax(up[t1].maxx,up[t2].maxx); tomin(up[t1].minn,up[t2].minn);</span><br><span class="line">        t.updata(up[t1].minn+<span class="hljs-number">1</span>,up[t1].maxx,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,ans[t1]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dis</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    sort(tmp+<span class="hljs-number">1</span>,tmp+<span class="hljs-number">1</span>+n);</span><br><span class="line">    len=unique(tmp+<span class="hljs-number">1</span>,tmp+<span class="hljs-number">1</span>+n) - tmp - <span class="hljs-number">1</span>;</span><br><span class="line">    For(i,<span class="hljs-number">1</span>,n) num[i]=lower_bound(tmp+<span class="hljs-number">1</span>,tmp+<span class="hljs-number">1</span>+len,num[i]) - tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    dis(n);</span><br><span class="line">    For(i,<span class="hljs-number">1</span>,n)&#123; uck[i]=i; ans[i]=<span class="hljs-number">1</span>; up[i]=Up&#123;num[i], num[i]&#125;; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> T; Sca(T);</span><br><span class="line">    <span class="hljs-keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> n; Sca(n);</span><br><span class="line">        For(i,<span class="hljs-number">1</span>,n)&#123; <span class="hljs-keyword">int</span> x; Sca(x); Sca(num[i]); tmp[i]=num[i]; &#125;</span><br><span class="line">        init(n);</span><br><span class="line">        t.build(<span class="hljs-number">1</span>,len,<span class="hljs-number">1</span>);</span><br><span class="line">        <span class="hljs-keyword">int</span> m; Sca(m);</span><br><span class="line">        <span class="hljs-keyword">while</span>(m--)&#123;</span><br><span class="line">            <span class="hljs-keyword">char</span> cmd[<span class="hljs-number">10</span>]; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>,cmd);</span><br><span class="line">            <span class="hljs-keyword">if</span>(cmd[<span class="hljs-number">0</span>]==<span class="hljs-string">'r'</span>)&#123; <span class="hljs-keyword">int</span> x,y; Sca2(x,y); x++; y++; merge(x,y); &#125;</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(cmd[<span class="hljs-number">0</span>]==<span class="hljs-string">'l'</span>)&#123;</span><br><span class="line">                <span class="hljs-keyword">double</span> x; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%lf"</span>,&amp;x);</span><br><span class="line">                x+=<span class="hljs-number">0.5</span>;</span><br><span class="line">                x = lower_bound(tmp+<span class="hljs-number">1</span>,tmp+<span class="hljs-number">1</span>+len,x) - tmp;</span><br><span class="line">                <span class="hljs-keyword">if</span>(x==len+<span class="hljs-number">1</span>) <span class="hljs-built_in">puts</span>(<span class="hljs-string">"0 0"</span>);</span><br><span class="line">                <span class="hljs-keyword">else</span>&#123;</span><br><span class="line">                    P out = t.getans(x,<span class="hljs-number">1</span>);</span><br><span class="line">                    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d %d\n"</span>,out.fi,out.se);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ACM/">ACM</a>, <a class="has-link-grey -link" href="/tags/并查集/">并查集</a>, <a class="has-link-grey -link" href="/tags/模拟/">模拟</a>, <a class="has-link-grey -link" href="/tags/线段树/">线段树</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/19/CodeForces - 12D/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">CodeForces - 12D Ball 线段树</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/19/POJ - 2777/">
+                <span class="level-item">POJ - 2777 Count Color 线段树+位运算</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="GenmCai">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        GenmCai
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Be a salted fish with a dream
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Ningbo Zhejiang</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        3
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        1
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://xor-star.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">郭吕建</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">xor-star.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/ACM/">
+            <span class="level-start">
+                <span class="level-item">ACM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/ACM/" style="font-size: 20px;">ACM</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/线段树/" style="font-size: 20px;">线段树</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/CodeForces - 12D/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://i2.tiimg.com/695816/1eb26e2a4d379cdd.jpg" alt="CodeForces - 12D Ball 线段树">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T11:12:46.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/CodeForces - 12D/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/UVA - 11992/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://i2.tiimg.com/695816/ab92da7e4bbd7680.jpg" alt="CodeForces - 12D Ball 线段树">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T10:55:21.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/UVA - 11992/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/POJ - 2777/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://i2.tiimg.com/695816/18b5f871bc472915.jpg" alt="POJ - 2777 Count Color 线段树+位运算">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T10:11:43.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/POJ - 2777/" class="has-link-black-ter is-size-6">POJ - 2777 Count Color 线段树+位运算</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/并查集/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/模拟/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/线段树/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/CodeForces - 12D/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://i2.tiimg.com/695816/1eb26e2a4d379cdd.jpg" alt="CodeForces - 12D Ball 线段树">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T11:12:46.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/CodeForces - 12D/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/UVA - 11992/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://i2.tiimg.com/695816/ab92da7e4bbd7680.jpg" alt="CodeForces - 12D Ball 线段树">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T10:55:21.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/UVA - 11992/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/POJ - 2777/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://i2.tiimg.com/695816/18b5f871bc472915.jpg" alt="POJ - 2777 Count Color 线段树+位运算">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T10:11:43.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/POJ - 2777/" class="has-link-black-ter is-size-6">POJ - 2777 Count Color 线段树+位运算</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/并查集/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/模拟/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/线段树/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="CodeForces - 12D Ball 线段树" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 GenmCai&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
