@@ -243,29 +243,24 @@
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-	var gitment = new Gitment({
-		id: '71b398314880c7f629a377674b7d9f22',
-		owner: 'GenmCai',
-		repo: 'blog-comment',
-		oauth: {
-			client_id: 'f86ef2149cde0660e7af',
-			client_secret: '6ad4da6e3ad2cfb72f431d207099779733b6e779',
-		},
-	})
-	gitment.render('comment-container')
-</script>
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NTc2Ny8yMjI3OA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
 
-    </div>
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
 </div>
-</div>
+<!-- City版安装代码已完成 --></div>
                 
 
 
