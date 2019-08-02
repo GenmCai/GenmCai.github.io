@@ -139,144 +139,21 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="http://i2.tiimg.com/695816/18b5f871bc472915.jpg" alt="POJ - 2777 Count Color 线段树+位运算">
-        </span>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-19T10:11:43.000Z">2019-07-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 861 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                POJ - 2777 Count Color 线段树+位运算
-            
-        </h1>
-        <div class="content">
-            <p>Count Color<br>Time Limit: 1000MS        Memory Limit: 65536K<br>Total Submissions: 55483        Accepted: 16628<br>Description</p>
-<p>Chosen Problem Solving and Program design as an optional course, you are required to solve all kinds of problems. Here, we get a new problem. </p>
-<a id="more"></a>
-<p>There is a very long board with length L centimeter, L is a positive integer, so we can evenly divide the board into L segments, and they are labeled by 1, 2, … L from left to right, each is 1 centimeter long. Now we have to color the board - one segment with only one color. We can do following two operations on the board: </p>
-<ol>
-<li>“C A B C” Color the board from segment A to segment B with color C. </li>
-<li>“P A B” Output the number of different colors painted between segment A and segment B (including). </li>
-</ol>
-<p>In our daily life, we have very few words to describe a color (red, green, blue, yellow…), so you may assume that the total number of different colors T is very small. To make it simple, we express the names of colors as color 1, color 2, … color T. At the beginning, the board was painted in color 1. Now the rest of problem is left to your.<br>Input</p>
-<p>First line of input contains L (1 &lt;= L &lt;= 100000), T (1 &lt;= T &lt;= 30) and O (1 &lt;= O &lt;= 100000). Here O denotes the number of operations. Following O lines, each contains “C A B C” or “P A B” (here A, B, C are integers, and A may be larger than B) as an operation defined previously.<br>Output</p>
-<p>Ouput results of the output operation in order, each line contains a number.<br>Sample Input</p>
-<p>2 2 4<br>C 1 1 2<br>P 1 2<br>C 2 2 2<br>P 1 2<br>Sample Output</p>
-<p>2<br>1</p>
-<p>题意：可以理解为L为多少个气球，T代表有多少种颜色，O代表操作数。C命令是区间[A,B]的气球染成C颜色，P命令是查询区间[A,B]有多少不同的颜色。<br>题解：一开始的时候是线段树维护大小为30的数组，明显被卡掉了。于是换了个思路，其实就是用二进制做，最大就是1&lt;&lt;L-1，而每一位二进制上代表存在，0代表不存在。于是就能很简单的用位运算进行实现，唯一的难点就是要想到二进制，幸好做这道题的前一天学的是状压dp。</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> se second</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> P pair<span class="hljs-meta-string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PLL pair<span class="hljs-meta-string">&lt;ll,ll&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca(x) scanf(<span class="hljs-meta-string">"%d"</span>,&amp;x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca2(x,y) scanf(<span class="hljs-meta-string">"%d%d"</span>,&amp;x,&amp;y)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca3(x,y,z) scanf(<span class="hljs-meta-string">"%d%d%d"</span>,&amp;x,&amp;y,&amp;z)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl(x) scanf(<span class="hljs-meta-string">"%lld"</span>,&amp;x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl2(x,y) scanf(<span class="hljs-meta-string">"%lld%lld"</span>,&amp;x,&amp;y)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl3(x,y,z) scanf(<span class="hljs-meta-string">"%lld%lld%lld"</span>,&amp;x,&amp;y,&amp;z)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Pri(x) printf(<span class="hljs-meta-string">"%d\n"</span>,x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Prl(x) printf(<span class="hljs-meta-string">"%lld\n"</span>,x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> For(i,x,y) for(int i=x;i&lt;=y;i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _For(i,x,y) for(int i=x;i&gt;=y;i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FAST_IO std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF=<span class="hljs-number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> ll INFL=<span class="hljs-number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> Pi = <span class="hljs-built_in">acos</span>(<span class="hljs-number">-1.0</span>);</span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">void</span> <span class="hljs-title">tomax</span>(<span class="hljs-title">T</span>&amp;<span class="hljs-title">a</span>,<span class="hljs-title">T</span> <span class="hljs-title">b</span>)&#123;</span> a=max(a,b); &#125;  </span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">void</span> <span class="hljs-title">tomin</span>(<span class="hljs-title">T</span>&amp;<span class="hljs-title">a</span>,<span class="hljs-title">T</span> <span class="hljs-title">b</span>)&#123;</span> a=min(a,b); &#125;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">1e5</span>+<span class="hljs-number">5</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> T;</span><br><span class="line"><span class="hljs-keyword">int</span> color;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Segt</span>&#123;</span></span><br><span class="line">	<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> lc (p&lt;&lt;1)</span></span><br><span class="line">	<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rc (p&lt;&lt;1|1)</span></span><br><span class="line">	<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MID (tree[p].l+tree[p].r)&gt;&gt;1</span></span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tree</span>&#123;</span></span><br><span class="line">		<span class="hljs-keyword">int</span> l,r;</span><br><span class="line">		<span class="hljs-keyword">int</span> have,lz;</span><br><span class="line">		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right)</span></span>&#123; l=left; r=right; have=<span class="hljs-number">1</span>; lz=<span class="hljs-number">0</span>; &#125;</span><br><span class="line">		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updata</span><span class="hljs-params">(<span class="hljs-keyword">int</span> who)</span></span>&#123; have=who; lz=who; &#125;</span><br><span class="line">		<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lable</span><span class="hljs-params">()</span></span>&#123; color|=have; &#125; </span><br><span class="line">	&#125;tree[N&lt;&lt;<span class="hljs-number">2</span>|<span class="hljs-number">1</span>];</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span></span>&#123; tree[p].have=tree[lc].have|tree[rc].have; &#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pushup</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">		tree[lc].updata(tree[p].lz);</span><br><span class="line">		tree[rc].updata(tree[p].lz);</span><br><span class="line">		tree[p].lz=<span class="hljs-number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">		tree[p].init(l,r);</span><br><span class="line">		<span class="hljs-keyword">if</span>(l==r)  <span class="hljs-keyword">return</span> ;</span><br><span class="line">		<span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">		build(l,mid,lc);</span><br><span class="line">		build(mid+<span class="hljs-number">1</span>,r,rc);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">updata</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> who)</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(tree[p].l&gt;=l&amp;&amp;tree[p].r&lt;=r)&#123;</span><br><span class="line">			tree[p].updata(who);</span><br><span class="line">			<span class="hljs-keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">if</span>(tree[p].lz) pushup(p);</span><br><span class="line">		<span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">		<span class="hljs-keyword">if</span>(l&lt;=mid) updata(l,r,lc,who);</span><br><span class="line">		<span class="hljs-keyword">if</span>(r&gt;mid) updata(l,r,rc,who);</span><br><span class="line">		pushdown(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getans</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(tree[p].l&gt;=l&amp;&amp;tree[p].r&lt;=r)&#123;</span><br><span class="line">			tree[p].lable();</span><br><span class="line">			<span class="hljs-keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">if</span>(tree[p].lz) pushup(p);</span><br><span class="line">		<span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">		<span class="hljs-keyword">if</span>(l&lt;=mid) getans(l,r,lc);</span><br><span class="line">		<span class="hljs-keyword">if</span>(r&gt;mid) getans(l,r,rc);</span><br><span class="line">		<span class="hljs-keyword">return</span> ; </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;t;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> n,m;</span><br><span class="line">	Sca3(n,T,m);</span><br><span class="line">	t.build(<span class="hljs-number">1</span>,n,<span class="hljs-number">1</span>);</span><br><span class="line">	<span class="hljs-keyword">while</span>(m--)&#123;</span><br><span class="line">		<span class="hljs-keyword">char</span> cmd; <span class="hljs-built_in">scanf</span>(<span class="hljs-string">" %c"</span>,&amp;cmd);</span><br><span class="line">		<span class="hljs-keyword">int</span> A,B; Sca2(A,B);</span><br><span class="line">		<span class="hljs-keyword">if</span>(A&gt;B) swap(A,B); </span><br><span class="line">		<span class="hljs-keyword">if</span>(cmd==<span class="hljs-string">'C'</span>)&#123;</span><br><span class="line">			<span class="hljs-keyword">int</span> C; Sca(C); </span><br><span class="line">			t.updata(A,B,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>&lt;&lt;(C<span class="hljs-number">-1</span>)); </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(cmd==<span class="hljs-string">'P'</span>)&#123;</span><br><span class="line">			color=<span class="hljs-number">0</span>;</span><br><span class="line">			t.getans(A,B,<span class="hljs-number">1</span>);</span><br><span class="line">			<span class="hljs-keyword">int</span> sum=<span class="hljs-number">0</span>;</span><br><span class="line">			<span class="hljs-keyword">while</span>(color)&#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(color&amp;<span class="hljs-number">1</span>) sum++;</span><br><span class="line">				color&gt;&gt;=<span class="hljs-number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			Pri(sum);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7"><i class="fa fa-tag"></i></span>
-                    <a class="has-link-grey -link" href="/tags/ACM/">ACM</a>, <a class="has-link-grey -link" href="/tags/位运算/">位运算</a>, <a class="has-link-grey -link" href="/tags/线段树/">线段树</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="http://i1.fuimg.com/695816/d42a67266c2d3850.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="http://i1.fuimg.com/695816/c88177c3e1d320ee.jpg" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/19/UVA - 11992/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">CodeForces - 12D Ball 线段树</span>
-            </a>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+<script src="https://billts.site/js/gitment.js"></script>
 <script>
-	var gitment = new Gitment({
-		id: 'fddc0944db2c6ed4370ed4b126f47bd3',
-		owner: 'GenmCai',
-		repo: 'blog-comment',
-		oauth: {
-			client_id: 'f86ef2149cde0660e7af',
-			client_secret: '6ad4da6e3ad2cfb72f431d207099779733b6e779',
-		},
-	})
-	gitment.render('comment-container')
-</script>
-
-    </div>
-</div>
-</div>
+var gitment = new Gitment({
+    id: 'Fri Jul 19 2019 18:11:43 GMT+0800',
+    owner: 'your_github_name',
+    repo: 'your_blog_github_repo',
+    oauth: {
+        client_id: 'your_client_id',
+        client_secret: 'your_client_secret_id',
+    },
+});
+gitment.render('gitmentContainer');
+</script></div>
                 
 
 

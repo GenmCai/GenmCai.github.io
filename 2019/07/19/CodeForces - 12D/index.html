@@ -139,133 +139,21 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="http://i2.tiimg.com/695816/1eb26e2a4d379cdd.jpg" alt="CodeForces - 12D Ball 线段树">
-        </span>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-19T11:12:46.000Z">2019-07-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 709 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                CodeForces - 12D Ball 线段树
-            
-        </h1>
-        <div class="content">
-            <p><img src="https://uploadfiles.nowcoder.com/images/20190727/359061375_1564222718211_293F6FEDCE924976FA0523F7DFB6EE9F" alt="图片说明" title="CF 12D"><br>题意：emmmm，就是题目描述的女性很奇葩，她们去参加国王举办的舞会，而每个女士有B、I、R三种属性，如果她们得知舞会上存在一个比自身所有属性都要高，那么她就会选择跳楼。。。问有多少个要跳楼的女士。</p>
-<a id="more"></a>
-<p>题解：其实很简单，即按照B进行从大到小排序，然后线段树对比I大的区间进行查询最大值，如果最大值大于自身的R那么这位正在查询的女士选择跳楼。最后把这么女士的信息插入到线段树的I点给予R值，即查完再更新。然后查到最后，其中判断成功累积的值就是结果了。</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> se second</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> P pair<span class="hljs-meta-string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PLL pair<span class="hljs-meta-string">&lt;ll,ll&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca(x) scanf(<span class="hljs-meta-string">"%d"</span>,&amp;x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca2(x,y) scanf(<span class="hljs-meta-string">"%d%d"</span>,&amp;x,&amp;y)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Sca3(x,y,z) scanf(<span class="hljs-meta-string">"%d%d%d"</span>,&amp;x,&amp;y,&amp;z)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl(x) scanf(<span class="hljs-meta-string">"%lld"</span>,&amp;x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl2(x,y) scanf(<span class="hljs-meta-string">"%lld%lld"</span>,&amp;x,&amp;y)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Scl3(x,y,z) scanf(<span class="hljs-meta-string">"%lld%lld%lld"</span>,&amp;x,&amp;y,&amp;z)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Pri(x) printf(<span class="hljs-meta-string">"%d\n"</span>,x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Prl(x) printf(<span class="hljs-meta-string">"%lld\n"</span>,x)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> For(i,x,y) for(int i=x;i&lt;=y;i++)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _For(i,x,y) for(int i=x;i&gt;=y;i--)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FAST_IO std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF=<span class="hljs-number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> ll INFL=<span class="hljs-number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> Pi = <span class="hljs-built_in">acos</span>(<span class="hljs-number">-1.0</span>);</span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">void</span> <span class="hljs-title">tomax</span>(<span class="hljs-title">T</span>&amp;<span class="hljs-title">a</span>,<span class="hljs-title">T</span> <span class="hljs-title">b</span>)&#123;</span> a=max(a,b); &#125;  </span><br><span class="line"><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">void</span> <span class="hljs-title">tomin</span>(<span class="hljs-title">T</span>&amp;<span class="hljs-title">a</span>,<span class="hljs-title">T</span> <span class="hljs-title">b</span>)&#123;</span> a=min(a,b); &#125;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">5e5</span>+<span class="hljs-number">5</span>;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Segt</span>&#123;</span></span><br><span class="line">	<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> lc (p&lt;&lt;1)</span></span><br><span class="line">	<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> rc (p&lt;&lt;1|1)</span></span><br><span class="line">	<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MID (tree[p].l+tree[p].r)&gt;&gt;1</span></span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Tree</span>&#123;</span></span><br><span class="line">		<span class="hljs-keyword">int</span> l,r;</span><br><span class="line">		<span class="hljs-keyword">int</span> val;</span><br><span class="line">	&#125;tree[N&lt;&lt;<span class="hljs-number">2</span>|<span class="hljs-number">1</span>];</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> p)</span></span>&#123; tree[p].val=max(tree[lc].val,tree[rc].val); &#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">		tree[p]=Tree&#123;l,r,<span class="hljs-number">0</span>&#125;;</span><br><span class="line">		<span class="hljs-keyword">if</span>(l==r) <span class="hljs-keyword">return</span> ;</span><br><span class="line">		<span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">		<span class="hljs-keyword">if</span>(l&lt;=mid) build(l,mid,lc);</span><br><span class="line">		<span class="hljs-keyword">if</span>(r&gt;mid) build(mid+<span class="hljs-number">1</span>,r,rc); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">updata</span><span class="hljs-params">(<span class="hljs-keyword">int</span> pos,<span class="hljs-keyword">int</span> p,<span class="hljs-keyword">int</span> val)</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(tree[p].l==pos &amp;&amp; tree[p].r==pos)&#123;</span><br><span class="line">			tomax(tree[p].val,val); </span><br><span class="line">			<span class="hljs-keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">		<span class="hljs-keyword">if</span>(pos&lt;=mid) updata(pos,lc,val);</span><br><span class="line">		<span class="hljs-keyword">if</span>(pos&gt;mid) updata(pos,rc,val);</span><br><span class="line">		pushdown(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getmax</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> p)</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(l&gt;r) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span>(tree[p].l&gt;=l&amp;&amp;tree[p].r&lt;=r) <span class="hljs-keyword">return</span> tree[p].val;</span><br><span class="line">		<span class="hljs-keyword">int</span> maxx=<span class="hljs-number">0</span>;</span><br><span class="line">		<span class="hljs-keyword">int</span> mid=MID;</span><br><span class="line">		<span class="hljs-keyword">if</span>(l&lt;=mid) tomax(maxx,getmax(l,r,lc));</span><br><span class="line">		<span class="hljs-keyword">if</span>(r&gt;mid) tomax(maxx,getmax(l,r,rc));</span><br><span class="line">		<span class="hljs-keyword">return</span> maxx;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;t;</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Data</span>&#123;</span></span><br><span class="line">	<span class="hljs-keyword">int</span> a,b,c;</span><br><span class="line">&#125;num[N];</span><br><span class="line"><span class="hljs-keyword">int</span> tmp[N];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(Data one, Data tow)</span></span>&#123; <span class="hljs-keyword">return</span> one.a &gt; tow.a; &#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">discrete</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	sort(tmp+<span class="hljs-number">1</span>,tmp+<span class="hljs-number">1</span>+n);</span><br><span class="line">	<span class="hljs-keyword">return</span> unique(tmp+<span class="hljs-number">1</span>,tmp+<span class="hljs-number">1</span>+n) - tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> n; Sca(n);</span><br><span class="line">	For(i,<span class="hljs-number">1</span>,n) Sca(num[i].a);</span><br><span class="line">	For(i,<span class="hljs-number">1</span>,n) &#123; Sca(num[i].b); tmp[i]=num[i].b; &#125;</span><br><span class="line">	For(i,<span class="hljs-number">1</span>,n) Sca(num[i].c);</span><br><span class="line">	sort(num+<span class="hljs-number">1</span>,num+<span class="hljs-number">1</span>+n,cmp);</span><br><span class="line">	<span class="hljs-keyword">int</span> lenb = discrete(n) - <span class="hljs-number">1</span>;</span><br><span class="line">	For(i,<span class="hljs-number">1</span>,n) num[i].b=lower_bound(tmp+<span class="hljs-number">1</span>,tmp+<span class="hljs-number">1</span>+lenb,num[i].b) - tmp;</span><br><span class="line">	<span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;</span><br><span class="line">	t.build(<span class="hljs-number">1</span>,lenb,<span class="hljs-number">1</span>);</span><br><span class="line">	<span class="hljs-keyword">int</span> minn=num[<span class="hljs-number">1</span>].a; <span class="hljs-keyword">int</span> l=<span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-comment">//	For(i,1,n)&#123;</span></span><br><span class="line"><span class="hljs-comment">//		cout&lt;&lt;num[i].a&lt;&lt;' '&lt;&lt;num[i].b&lt;&lt;' '&lt;&lt;num[i].c&lt;&lt;endl;</span></span><br><span class="line"><span class="hljs-comment">//	&#125;</span></span><br><span class="line">	For(i,<span class="hljs-number">2</span>,n)&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(num[i].a&lt;minn)&#123; minn=num[i].a;  For(j,l,i<span class="hljs-number">-1</span>) t.updata(num[j].b,<span class="hljs-number">1</span>,num[j].c); l=i; &#125;</span><br><span class="line">		<span class="hljs-keyword">if</span>(t.getmax(num[i].b+<span class="hljs-number">1</span>,lenb,<span class="hljs-number">1</span>) &gt; num[i].c) ans++;	</span><br><span class="line">	&#125;</span><br><span class="line">	Pri(ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//9</span></span><br><span class="line"><span class="hljs-comment">//7</span></span><br><span class="line"><span class="hljs-comment">//7</span></span><br><span class="line"><span class="hljs-comment">//7</span></span><br><span class="line"><span class="hljs-comment">//5</span></span><br><span class="line"><span class="hljs-comment">//2</span></span><br><span class="line"><span class="hljs-comment">//1</span></span><br><span class="line"><span class="hljs-comment">//1</span></span><br><span class="line"><span class="hljs-comment">//1</span></span><br></pre></td></tr></table></figure>
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7"><i class="fa fa-tag"></i></span>
-                    <a class="has-link-grey -link" href="/tags/ACM/">ACM</a>, <a class="has-link-grey -link" href="/tags/线段树/">线段树</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="http://i1.fuimg.com/695816/d42a67266c2d3850.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="http://i1.fuimg.com/695816/c88177c3e1d320ee.jpg" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/19/UVA - 11992/">
-                <span class="level-item">CodeForces - 12D Ball 线段树</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="comment-container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+<script src="https://billts.site/js/gitment.js"></script>
 <script>
-	var gitment = new Gitment({
-		id: '82bec0d897242d29c5e8d55920e5ed58',
-		owner: 'GenmCai',
-		repo: 'blog-comment',
-		oauth: {
-			client_id: 'f86ef2149cde0660e7af',
-			client_secret: '6ad4da6e3ad2cfb72f431d207099779733b6e779',
-		},
-	})
-	gitment.render('comment-container')
-</script>
-
-    </div>
-</div>
-</div>
+var gitment = new Gitment({
+    id: 'Fri Jul 19 2019 19:12:46 GMT+0800',
+    owner: 'your_github_name',
+    repo: 'your_blog_github_repo',
+    oauth: {
+        client_id: 'your_client_id',
+        client_secret: 'your_client_secret_id',
+    },
+});
+gitment.render('gitmentContainer');
+</script></div>
                 
 
 
