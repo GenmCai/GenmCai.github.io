@@ -242,6 +242,29 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '82bec0d897242d29c5e8d55920e5ed58',
+		owner: 'GenmCai',
+		repo: 'blog-comment',
+		oauth: {
+			client_id: 'f86ef2149cde0660e7af',
+			client_secret: '6ad4da6e3ad2cfb72f431d207099779733b6e779',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
