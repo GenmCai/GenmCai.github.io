@@ -17,7 +17,7 @@
 <meta property="og:description" content="正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。 — 菜鸟教程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Settingsum.png">
-<meta property="og:updated_time" content="2019-08-06T13:31:45.304Z">
+<meta property="og:updated_time" content="2019-08-06T15:56:33.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用正则表达式">
 <meta name="twitter:description" content="正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。 — 菜鸟教程">
@@ -150,10 +150,11 @@
     </div>
 </nav>
     
+    
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-image">
         <span class="image is-7by1">
@@ -207,7 +208,7 @@
 <p>\n\s*\r</p>
 </blockquote>
 <h3><span id="email地址">Email地址</span></h3><blockquote>
-<p>[\w!#$%&amp;’<em>+/=?^_`{|}~-]+(?:.[\w!#$%&amp;’</em>+/=?^_`{|}~-]+)<em>@(?:[\w](?:[\w-]</em>[\w])?.)+<a href="?:[\w-]*[\w]">\w</a>?</p>
+<p>[\w!#$%&amp;’<em>+/=?^_`{|}~-]+(?:.[\w!#$%&amp;’</em>+/=?^_`{|}~-]+)<em>@(?:[\w](?:[\w-]</em>[\w])?.)+[\w](?:[\w-]*[\w])?</p>
 </blockquote>
 <h3><span id="网址url">网址URL</span></h3><blockquote>
 <p>[a-zA-z]+://[^\s]*</p>
@@ -353,76 +354,10 @@
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <nav class="level">
-            <div class="level-item has-text-centered" style="flex-shrink: 1">
-                <div>
-                    
-                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="GenmCai">
-                    
-                    
-                    <p class="is-size-4 is-block">
-                        GenmCai
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-block">
-                        Be a salted fish with a dream
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
-                        <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>Ningbo Zhejiang</span>
-                    </p>
-                    
-                </div>
-            </div>
-        </nav>
-        <nav class="level is-mobile">
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        文章
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        6
-                    </p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        分类
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        3
-                    </p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        标签
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        7
-                    </p>
-                </div>
-            </div>
-        </nav>
-        <div class="level">
-            <a class="level-item button is-link is-rounded" href="https://github.com/GenmCai" target="_blank">
-                关注我</a>
-        </div>
-        
-        
-    </div>
-</div>
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
     
         
 <div class="card widget" id="toc">
@@ -504,6 +439,75 @@
     </div>
 </div>
 
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="GenmCai">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        GenmCai
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Be a salted fish with a dream
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Ningbo Zhejiang</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        3
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/GenmCai" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
     
         
 
@@ -605,7 +609,7 @@
 
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
         
             
 <div class="card widget">
@@ -817,215 +821,6 @@
                 
 
 
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/08/06/RE2/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Settingsum.png" alt="常用正则表达式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T10:11:43.000Z">2019-08-06</time></div>
-                    <a href="/2019/08/06/RE2/" class="has-link-black-ter is-size-6">常用正则表达式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/正则表达式/">正则表达式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/05/RE1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/sakura.png" alt="正则表达式(RegEx)集合（初级）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-05T14:00:00.000Z">2019-08-05</time></div>
-                    <a href="/2019/08/05/RE1/" class="has-link-black-ter is-size-6">正则表达式(RegEx)集合（初级）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/正则表达式/">正则表达式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/03/hexo1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/miku1.jpg" alt="Hexo 绑定个人域名（华为云版）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-03T10:11:43.000Z">2019-08-03</time></div>
-                    <a href="/2019/08/03/hexo1/" class="has-link-black-ter is-size-6">Hexo 绑定个人域名（华为云版）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/07/19/CodeForces12D/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/CodeForces%20-%2012D.jpg" alt="CodeForces - 12D Ball 线段树">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T11:12:46.000Z">2019-07-19</time></div>
-                    <a href="/2019/07/19/CodeForces12D/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/07/19/UVA11992/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/UVA%20-%2011992.jpg" alt="CodeForces - 12D Ball 线段树">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T10:55:21.000Z">2019-07-19</time></div>
-                    <a href="/2019/07/19/UVA11992/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ACM/">
-                        <span class="tag">ACM</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hexo/">
-                        <span class="tag">Hexo</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/位运算/">
-                        <span class="tag">位运算</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/并查集/">
-                        <span class="tag">并查集</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/模拟/">
-                        <span class="tag">模拟</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/正则表达式/">
-                        <span class="tag">正则表达式</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/线段树/">
-                        <span class="tag">线段树</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-    
-    
-</div>
 
             </div>
         </div>
@@ -1223,5 +1018,4 @@ document.addEventListener('DOMContentLoaded', function () {
             document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
         }
     </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
-</html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>

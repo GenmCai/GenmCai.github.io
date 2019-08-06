@@ -2,17 +2,23 @@
  *       Override CSS Framework
  * --------------------------------- */
 html {
-  font-size: 14px;
+  font-size: 12px;
 }
 body {
   background-color: #f7f7f7;
 }
 body,
-button,
 input,
 select,
 textarea {
-  font-family: "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif;
+  font-family: "SimHei", "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif;
+}
+button {
+  font-family: "SimHei", "Ubuntu", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif;
+  background-color: #00a99d;
+}
+a {
+  color: #00a99d;
 }
 @media screen and (min-width: 1280px) {
   .is-1-column .container,
@@ -51,11 +57,12 @@ textarea {
   }
 }
 .tag.is-grey {
-  background: #e7e7e7;
+  background: #00a99d;
 }
 .card {
+  background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px #fff, 0 0 1px #fff;
 }
 .card + .card,
 .card + .column-right-shadow {
@@ -77,10 +84,11 @@ img.thumbnail {
 }
 .navbar-logo img,
 .footer-logo img {
-  max-height: 1.75rem;
+  max-height: 4rem;
 }
 .navbar-main {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  background-color: #fff;
+  box-shadow: 0 4px 10px #fff;
 }
 .navbar-main .navbar-menu,
 .navbar-main .navbar-start,
@@ -88,7 +96,6 @@ img.thumbnail {
   align-items: stretch;
   display: flex;
   padding: 0;
-  flex-shrink: 0;
 }
 .navbar-main .navbar-menu {
   flex-grow: 1;
@@ -109,7 +116,7 @@ img.thumbnail {
   padding: 1.25rem 0.75rem;
 }
 .navbar-main .navbar-item.is-active {
-  color: #3273dc;
+  color: #00a99d;
   background-color: transparent;
 }
 @media screen and (max-width: 1087px) {
@@ -126,6 +133,7 @@ img.thumbnail {
 }
 .footer {
   background: #fff;
+  box-shadow: 0 4px 10px #fff;
 }
 .footer .field .button {
   background: transparent;
@@ -145,19 +153,27 @@ img.thumbnail {
 .pagination .pagination-link:not(.is-current),
 .pagination .pagination-previous,
 .pagination .pagination-next {
-  background: #fff;
+  background-color: #00a99d;
   border: none;
 }
 .pagination .pagination-link,
 .pagination .pagination-previous,
 .pagination .pagination-next {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,169,157,0.05);
+}
+.pagination .pagination-link .is-current,
+.pagination .pagination-previous .is-current,
+.pagination .pagination-next .is-current {
+  background-color: #00a99d;
+  border-color: #00a99d;
+  color: #fff;
 }
 .post-navigation {
   justify-content: space-around;
 }
 .post-navigation .level-item {
   margin-bottom: 0;
+  color: #00a99d;
 }
 .timeline {
   margin-left: 1rem;
@@ -179,7 +195,7 @@ img.thumbnail {
   width: 9px;
   height: 9px;
   top: 1.3rem;
-  background: #dbdbdb;
+  background: #00a99d;
   border-radius: 50%;
 }
 .timeline .media:first-child:before {
@@ -189,7 +205,7 @@ img.thumbnail {
   top: calc(1.3rem + 9px);
   width: 9px;
   bottom: 0;
-  background: #fff;
+  background: #00a99d;
 }
 .timeline .media:first-child:last-child:after {
   top: calc(0.3rem + 9px);
@@ -202,9 +218,16 @@ img.thumbnail {
 }
 .article .content blockquote.pullquote {
   float: right;
-  max-width: 50%;
+  max-width: 80%;
   font-size: 1.15rem;
   position: relative;
+}
+.article .post-copyright {
+  margin: 2em 0 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #00a99d;
+  background-color: rgba(255,147,87,0);
+  list-style: none;
 }
 .rtl {
   direction: rtl;
@@ -260,7 +283,7 @@ img.thumbnail {
     right: 0;
     bottom: 0;
     z-index: 99;
-    background: rgba(0,0,0,0.7);
+    background: #00a99d;
   }
   #toc.is-active,
   #toc-mask.is-active {
@@ -328,13 +351,13 @@ img.thumbnail {
 }
 .has-link-grey:hover,
 .has-link-black-ter:hover {
-  color: #3273dc !important;
+  color: #00a99d !important;
 }
 .has-link-grey {
-  color: #7a7a7a !important;
+  color: #00a99d !important;
 }
 .has-link-black-ter {
-  color: #242424 !important;
+  color: #00a99d !important;
 }
 @media screen and (max-width: 768px) {
   .has-text-centered-mobile {
@@ -356,6 +379,7 @@ img.thumbnail {
 .far,
 .fas {
   line-height: inherit;
+  background: transparent;
 }
 /* ---------------------------------
  *        Fix content elements
@@ -367,9 +391,11 @@ img.thumbnail {
 .content h5,
 .content h6 {
   font-weight: 400;
+  font-family: "黑体";
 }
 .content h1 {
   font-size: 1.75em;
+  color: #00a99c;
 }
 .content h2 {
   font-size: 1.5em;
@@ -422,7 +448,7 @@ figure.highlight pre .line {
 }
 figure.highlight figcaption,
 figure.highlight .gutter {
-  background: rgba(200,200,200,0.15);
+  background: #00a99d;
 }
 figure.highlight figcaption {
   padding: 0.3em 0.75em;
@@ -436,7 +462,7 @@ figure.highlight figcaption span {
 }
 figure.highlight figcaption a {
   float: right;
-  color: #9a9a9a;
+  color: #00a99d;
 }
 figure.highlight .gutter {
   text-align: right;
@@ -455,6 +481,7 @@ figure.highlight .section {
   vertical-align: inherit;
   min-width: inherit;
   border-radius: inherit;
+  color: #00a99d;
 }
 figure.highlight .copy {
   display: none;
@@ -468,34 +495,6 @@ figure.highlight:hover .copy {
   display: block;
 }
 /* ---------------------------------
- *          Overflow Table
- * --------------------------------- */
-.table-overflow {
-  overflow-x: auto;
-}
-.table-overflow table {
-  width: auto !important;
-}
-.table-overflow table th {
-  word-break: keep-all;
-}
-/* ---------------------------------
- *            Fix Video
- * --------------------------------- */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 25px;
-  height: 0;
-}
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-/* ---------------------------------
  *        Fix Gist Snippet
  * --------------------------------- */
 .gist table tr:hover {
@@ -506,4 +505,12 @@ figure.highlight:hover .copy {
 }
 .gist .file {
   all: initial;
+}
+/* ---------------------------------
+ *        鼠标点击烟花效果
+ * --------------------------------- */
+.fireworks {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
 }
