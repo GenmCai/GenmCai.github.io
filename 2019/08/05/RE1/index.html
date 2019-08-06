@@ -8,19 +8,19 @@
 
 
 
-    <meta name="description" content="{}">
+    <meta name="description" content="正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。">
 <meta name="keywords" content="正则表达式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式(RegEx)集合（初级）">
 <meta property="og:url" content="https://www.genmcai.com/2019/08/05/RE1/index.html">
 <meta property="og:site_name" content="GenmCai">
-<meta property="og:description" content="{}">
+<meta property="og:description" content="正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/sakura.png">
-<meta property="og:updated_time" content="2019-08-06T02:00:00.128Z">
+<meta property="og:updated_time" content="2019-08-06T13:33:05.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式(RegEx)集合（初级）">
-<meta name="twitter:description" content="{}">
+<meta name="twitter:description" content="正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。">
 <meta name="twitter:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/sakura.png">
 
 
@@ -136,6 +136,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -189,8 +193,169 @@
             
         </h1>
         <div class="content">
-            <hr>
-<h2><span id>{}</span></h2>
+            <blockquote>
+<p>正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2><span id="正则表达式中的符号"><font face="楷体" color="red"> 正则表达式中的符号 </font></span></h2>
+<style>
+table th:first-of-type {
+    width: 110px;
+}
+table th:nth-of-type(3) {
+  width: 135px
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>str</td>
+<td>匹配文本字符串的字面值str</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>str1|str2</td>
+<td>匹配正则表达式str1|str2</td>
+<td>abc|bca</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配任何字符（除\n）</td>
+<td>abc.abc</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串起始部分</td>
+<td>^Dear</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串终止部分</td>
+<td>/str1/*str2$</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配0次或者多次前面出现的正则表达式</td>
+<td>[A-Za-z0-9]*</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配1次或者多次前面出现的正则表达式</td>
+<td>[a-z]+\.com</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配0次或者1次前面出现的正则表达式</td>
+<td>str?</td>
+</tr>
+<tr>
+<td>{N}</td>
+<td>匹配N次前面出现的正则表达式</td>
+<td>[A-Z]{3}</td>
+</tr>
+<tr>
+<td>{M,N}</td>
+<td>匹配M到N次（包括M和N）前面出现的正则表达式</td>
+<td>[0,9]{3,6}</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>匹配括号中说明的字符集的任意单一字符</td>
+<td>[abc]</td>
+</tr>
+<tr>
+<td>[…x-y…]</td>
+<td>匹配x-y范围中的任意单一字符</td>
+<td>[A-Za-z0-9]</td>
+</tr>
+<tr>
+<td>[^…]</td>
+<td>不匹配此字符集中出现的任何一个字符，包括某一范围的字符（如果在此字符集中出现）</td>
+<td>[^aedv],[^A-Z]</td>
+</tr>
+<tr>
+<td>(*|+|?|{})?</td>
+<td>用于匹配上面频繁出现/重复出现符号的非贪婪版本（*、+、?、{}）</td>
+<td>.*?[A-Z]</td>
+</tr>
+<tr>
+<td>(…)</td>
+<td>匹配封闭的正则表达式，然后另存为子组</td>
+<td>(A(B(C)))</td>
+</tr>
+</tbody></table>
+<h2><span id="正则表达式中的特殊字符"><font face="楷体" color="red"> 正则表达式中的特殊字符 </font></span></h2>
+
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\d</td>
+<td>匹配任何十进制数字，与[0-9]一致(\D与\d相反，不匹配任何十进制数字)</td>
+<td>f\d.txt</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配任何字母数字字符，与[A-Za-z0-9]相同（\W与之相反）</td>
+<td>[A-Za-z]\w+</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何空格字符，与[\n\t\r\v\f]相同(\S与之相反)</td>
+<td>of\sthe</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配任何单词边界（\B与之相反）</td>
+<td>\bThe\b</td>
+</tr>
+<tr>
+<td>\N</td>
+<td>匹配已保存的子组N（参见上面的(…)）</td>
+<td>price:\16</td>
+</tr>
+<tr>
+<td>\c</td>
+<td>逐字匹配任何特殊字符c（即，仅按照字面意义匹配，不匹配特殊含义）</td>
+<td>\.,\\,\*</td>
+</tr>
+<tr>
+<td>\A(\Z)</td>
+<td>匹配字符串的起始(结束)（如上面介绍的^和$）</td>
+<td>\ADear</td>
+</tr>
+</tbody></table>
+<h2><span id="正则表达式中的扩展表示法"><font face="楷体" color="red"> 正则表达式中的扩展表示法 </font></span></h2>
+
+<h4><span id="str">(?str)</span></h4><p>在正则表达式中嵌入一个或者多个特殊“标记”参数（或者通过函数/方法）</p>
+<h4><span id>(?:…)</span></h4><p>表示一个匹配不用保存的分组</p>
+<h4><span id="pltnamegt">(?P&lt;name&gt;)</span></h4><p>向一个仅由name标识而不是数字ID标识的正则分组匹配</p>
+<h4><span id="pname">(?P=name)</span></h4><p>在同一字符串中匹配由(?P<name>)分组的之前文本</name></p>
+<h4><span id>(?#…)</span></h4><p>表示注释，所有内容都被忽略</p>
+<h4><span id>(?=…)</span></h4><p>匹配条件是如果…出现在之后的位置，而不使用输入字符串；称作正向前视断言</p>
+<h4><span id>(?!…)</span></h4><p>匹配条件是如果…不出现在之后的位置，而不使用输入字符串；称作负向前视断言</p>
+<h4><span id="lt">(?&lt;=…)</span></h4><p>匹配条件是如果…出现在之前的位置，而不使用输入字符串；称作正向后视断言</p>
+<h4><span id="lt">(?&lt;!…)</span></h4><p>匹配条件是如果…不出现在之前的位置，而不是用输入字符串；称作负向后视断言</p>
+<h4><span id="idnameyn">(?(id/name)Y|N)</span></h4><p>如果分组所提供的id或者name（名称）存在，就返回正则表达式的条件匹配Y，如果不存在，就返回N；|N是可选项（也就是说是可省略的）。ps: 有点像C++中的三目运算符</p>
+<h2><span id="贪婪模式vs非贪婪模式">贪婪模式vs非贪婪模式</span></h2><p>〇 贪婪模式 在整个表达式匹配成功的前提下，尽可能多的匹配</p>
+<p>〇 非贪婪模式 在整个表达式匹配成功的前提下，尽可能少的匹配</p>
+<blockquote>
+<p>默认是贪婪模式</p>
+</blockquote>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -373,6 +538,73 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1</span>
+        <span> 正则表达式中的符号 </span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2</span>
+        <span> 正则表达式中的特殊字符 </span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3</span>
+        <span> 正则表达式中的扩展表示法 </span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.1</span>
+        <span>(?str)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.2</span>
+        <span>(?:…)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.3</span>
+        <span>(?P&lt;name&gt;)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.4</span>
+        <span>(?P=name)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.5</span>
+        <span>(?#…)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.6</span>
+        <span>(?=…)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.7</span>
+        <span>(?!…)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.8</span>
+        <span>(?&lt;=…)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.9</span>
+        <span>(?&lt;!…)</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3.10</span>
+        <span>(?(id/name)Y|N)</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">4</span>
+        <span>贪婪模式vs非贪婪模式</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
