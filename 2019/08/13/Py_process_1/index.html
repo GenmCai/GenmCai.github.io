@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Python进程学习笔记 - GenmCai</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="进程◆ 是一个执行中的程序 ◆ 每个进程都拥有自己的地址空间、内存、数据栈以及其他用于跟踪执行的辅助数据 ◆ 操作系统管理其上所有进程的执行，并为这些进程合理地分配时间 ◆ 进成也可通过派生（fork 或 spawn）新的进程来执行其他任务">
+<meta name="keywords" content="Python,进程,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python进程学习笔记">
+<meta property="og:url" content="https://www.genmcai.com/2019/08/13/Py_process_1/index.html">
+<meta property="og:site_name" content="GenmCai">
+<meta property="og:description" content="进程◆ 是一个执行中的程序 ◆ 每个进程都拥有自己的地址空间、内存、数据栈以及其他用于跟踪执行的辅助数据 ◆ 操作系统管理其上所有进程的执行，并为这些进程合理地分配时间 ◆ 进成也可通过派生（fork 或 spawn）新的进程来执行其他任务">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_process_1.jpg">
+<meta property="og:updated_time" content="2019-08-18T05:11:22.352Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python进程学习笔记">
+<meta name="twitter:description" content="进程◆ 是一个执行中的程序 ◆ 每个进程都拥有自己的地址空间、内存、数据栈以及其他用于跟踪执行的辅助数据 ◆ 操作系统管理其上所有进程的执行，并为这些进程合理地分配时间 ◆ 进成也可通过派生（fork 或 spawn）新的进程来执行其他任务">
+<meta name="twitter:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_process_1.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/f.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- 设置文章的关键字 -->
+
+<meta name="keywords" content="Python,进程,学习笔记,GenmCai,hexo,华为云">
+
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="Python进程学习笔记" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="https://github.com/GenmCai">Github</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/GenmCai">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_process_1.jpg" alt="Python进程学习笔记">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-13T05:57:34.000Z">2019-08-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1415 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Python进程学习笔记
+            
+        </h1>
+        <div class="content">
+            <h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>◆ 是一个执行中的程序</p>
+<p>◆ 每个进程都拥有自己的地址空间、内存、数据栈以及其他用于跟踪执行的辅助数据</p>
+<p>◆ 操作系统管理其上所有进程的执行，并为这些进程合理地分配时间</p>
+<p>◆ 进成也可通过派生（fork 或 spawn）新的进程来执行其他任务</p>
+<a id="more"></a>
+<p>PS：fork在windows上的支持不是太好，代码只可能在Linux上运行的话，建议用fork。</p>
+<h3 id="进程模块"><a href="#进程模块" class="headerlink" title="进程模块"></a>进程模块</h3><p>◆ 使用multiprocessing实现多进程代码</p>
+<p>◆ 用multiprocessing.Process创建进程</p>
+<p>◆ start()启动进程</p>
+<p>◆ join()挂起进程</p>
+<p>◆ os.getpid()获得进程的ID</p>
+<h3 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h3><h4 id="函数实现："><a href="#函数实现：" class="headerlink" title="函数实现："></a>函数实现：</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> os, time</span><br><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">do_sth</span><span class="hljs-params">(name)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    进程要做的事情</span></span><br><span class="line"><span class="hljs-string">    :param name: str 进程的名称</span></span><br><span class="line"><span class="hljs-string">    :return:</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    print(<span class="hljs-string">'进程名称：&#123;0&#125;， pid：&#123;1&#125;'</span>.format(name, os.getpid()))</span><br><span class="line">    time.sleep(<span class="hljs-number">150</span>)</span><br><span class="line">    print(<span class="hljs-string">'进程要做的事情'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    p = Process(target=do_sth, args=(<span class="hljs-string">'my process'</span>, ))</span><br><span class="line">    <span class="hljs-comment"># 启动进程</span></span><br><span class="line">    p.start()</span><br><span class="line">    <span class="hljs-comment"># 挂起进程</span></span><br><span class="line">    p.join()</span><br></pre></td></tr></table></figure>
+
+<h4 id="面向对象实现："><a href="#面向对象实现：" class="headerlink" title="面向对象实现："></a>面向对象实现：</h4><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> os, time</span><br><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyProcess</span><span class="hljs-params">(Process)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, *args, **kwargs)</span>:</span></span><br><span class="line">        super().__init__(*args, **kwargs)</span><br><span class="line">        self.my_name = name</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        print(<span class="hljs-string">'MyProcess进程的名称：&#123;0&#125;，pid: &#123;1&#125;'</span>.format(self.my_name, os.getpid()))</span><br><span class="line">        time.sleep(<span class="hljs-number">150</span>)</span><br><span class="line">        print(<span class="hljs-string">'MyProcess进程要做的事情'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    p = MyProcess(<span class="hljs-string">'my process class'</span>)</span><br><span class="line">    <span class="hljs-comment"># 启动进程</span></span><br><span class="line">    p.start()</span><br><span class="line">    <span class="hljs-comment"># 挂起进程</span></span><br><span class="line">    p.join()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以在任务管理器中找到对应的进程。</p>
+</blockquote>
+<img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/Py/1.png" width="50%" height="50%">
+
+<h3 id="进程之间的通信"><a href="#进程之间的通信" class="headerlink" title="进程之间的通信"></a>进程之间的通信</h3><p>◆ 通过Queue、Pipes等实现进程之间的通信</p>
+<p>代码：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process, Queue, current_process</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> random</span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WriteProcess</span><span class="hljs-params">(Process)</span>:</span></span><br><span class="line">    <span class="hljs-string">""" 写的进程 """</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, q, *args, **kwargs)</span>:</span></span><br><span class="line">        super().__init__(*args, **kwargs)</span><br><span class="line">        self.q = q</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-string">""" 实现进程的业务逻辑 """</span></span><br><span class="line">        <span class="hljs-comment"># 要写的内容</span></span><br><span class="line">        ls = [</span><br><span class="line">            <span class="hljs-string">"第1行内容"</span>,</span><br><span class="line">            <span class="hljs-string">"第2行内容"</span>,</span><br><span class="line">            <span class="hljs-string">"第3行内容"</span>,</span><br><span class="line">            <span class="hljs-string">"第4行内容"</span>,</span><br><span class="line">        ]</span><br><span class="line">        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> ls:</span><br><span class="line">            print(<span class="hljs-string">'写入内容：&#123;0&#125; - &#123;1&#125;'</span>.format(line, current_process().name))</span><br><span class="line">            self.q.put(line)</span><br><span class="line">            <span class="hljs-comment"># 每写入一次，休息1-5秒</span></span><br><span class="line">            time.sleep(random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReadProcess</span><span class="hljs-params">(Process)</span>:</span></span><br><span class="line">    <span class="hljs-string">""" 读取内容进程 """</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, q, *args, **kwargs)</span>:</span></span><br><span class="line">        super().__init__(*args, **kwargs)</span><br><span class="line">        self.q = q</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">            content = self.q.get()</span><br><span class="line">            print(<span class="hljs-string">'读取到的内容：&#123;0&#125; - &#123;1&#125;'</span>.format(content, self.name))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    <span class="hljs-comment"># 通过Queue共享数据</span></span><br><span class="line">    q = Queue()</span><br><span class="line">    <span class="hljs-comment"># 写入内容的进程</span></span><br><span class="line">    t_write = WriteProcess(q)</span><br><span class="line">    t_write.start()</span><br><span class="line">    <span class="hljs-comment"># 读取进程启动</span></span><br><span class="line">    t_read = ReadProcess(q)</span><br><span class="line">    t_read.start()</span><br><span class="line">    t_write.join()</span><br><span class="line">    <span class="hljs-comment"># t_read.join()</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 因为读的进程是死循环，无法等待其结束，只能强制终止</span></span><br><span class="line">    t_read.terminate()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>即使用数据对象进行通信</p>
+</blockquote>
+<h3 id="多进程中的锁"><a href="#多进程中的锁" class="headerlink" title="多进程中的锁"></a>多进程中的锁</h3><p>◆ Lock()</p>
+<p>◆ Rlock()</p>
+<p>◆ Condition()</p>
+<p>PS：进程的锁是为了防止共享数据产生错误，从而加锁保证每次操作数据只有一个进程，且牺牲了多进程的并行执行效率。</p>
+<h4 id="Lock"><a href="#Lock" class="headerlink" title="Lock()"></a>Lock()</h4><p>代码：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> random</span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process, Lock</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WriteProcess</span><span class="hljs-params">(Process)</span>:</span></span><br><span class="line">    <span class="hljs-string">""" 写入文件 """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, file_name, num, lock, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="hljs-comment"># 文件的名称</span></span><br><span class="line">        super().__init__(*args, **kwargs)</span><br><span class="line">        self.file_name = file_name</span><br><span class="line">        self.num = num</span><br><span class="line">        <span class="hljs-comment"># 锁对象</span></span><br><span class="line">        self.lock = lock</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-string">""" 写入文件的主要业务逻辑 """</span></span><br><span class="line">        <span class="hljs-keyword">try</span>:</span><br><span class="line">            <span class="hljs-comment"># 添加锁</span></span><br><span class="line">            self.lock.acquire()</span><br><span class="line">            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):</span><br><span class="line">                content = <span class="hljs-string">'现在是：&#123;0&#125; : &#123;1&#125; - &#123;2&#125;\n'</span>.format(</span><br><span class="line">                    self.name,</span><br><span class="line">                    self.pid,</span><br><span class="line">                    self.num</span><br><span class="line">                )</span><br><span class="line">                <span class="hljs-keyword">with</span> open(self.file_name, <span class="hljs-string">'a+'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:</span><br><span class="line">                    f.write(content)</span><br><span class="line">                    time.sleep(random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>))</span><br><span class="line">                    print(content)</span><br><span class="line">        <span class="hljs-keyword">finally</span>:</span><br><span class="line">            self.lock.release()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    file_name = <span class="hljs-string">'test.txt'</span></span><br><span class="line">    <span class="hljs-comment"># 锁的对象</span></span><br><span class="line">    lock = Lock()</span><br><span class="line">    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):</span><br><span class="line">        p = WriteProcess(file_name, x, lock)</span><br><span class="line">        p.start()</span><br></pre></td></tr></table></figure>
+
+<h4 id="Rlock"><a href="#Rlock" class="headerlink" title="Rlock()"></a>Rlock()</h4><p>代码：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> random</span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process, RLock</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WriteProcess</span><span class="hljs-params">(Process)</span>:</span></span><br><span class="line">    <span class="hljs-string">""" 写入文件 """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, file_name, num, rlock, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="hljs-comment"># 文件的名称</span></span><br><span class="line">        super().__init__(*args, **kwargs)</span><br><span class="line">        self.file_name = file_name</span><br><span class="line">        self.num = num</span><br><span class="line">        <span class="hljs-comment"># 锁对象</span></span><br><span class="line">        self.rlock = rlock</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-string">""" 写入文件的主要业务逻辑 """</span></span><br><span class="line">        <span class="hljs-keyword">try</span>:</span><br><span class="line">            <span class="hljs-comment"># 添加锁</span></span><br><span class="line">            self.rlock.acquire()</span><br><span class="line">            print(<span class="hljs-string">'locked'</span>)</span><br><span class="line">            self.rlock.acquire()</span><br><span class="line">            print(<span class="hljs-string">'relocked'</span>)</span><br><span class="line">            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):</span><br><span class="line">                content = <span class="hljs-string">'现在是：&#123;0&#125; : &#123;1&#125; - &#123;2&#125;\n'</span>.format(</span><br><span class="line">                    self.name,</span><br><span class="line">                    self.pid,</span><br><span class="line">                    self.num</span><br><span class="line">                )</span><br><span class="line">                <span class="hljs-keyword">with</span> open(self.file_name, <span class="hljs-string">'a+'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:</span><br><span class="line">                    f.write(content)</span><br><span class="line">                    time.sleep(random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>))</span><br><span class="line">                    print(content)</span><br><span class="line">        <span class="hljs-keyword">finally</span>:</span><br><span class="line">            self.rlock.release()</span><br><span class="line">            self.rlock.release()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    file_name = <span class="hljs-string">'test.txt'</span></span><br><span class="line">    <span class="hljs-comment"># 锁的对象</span></span><br><span class="line">    rlock = RLock()</span><br><span class="line">    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):</span><br><span class="line">        p = WriteProcess(file_name, x, rlock)</span><br><span class="line">        p.start()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>RLock可重复锁，而Lock能重复锁，反而会导致死锁，导致程序无法正常运行，同线程的锁，有共同之处。</p>
+</blockquote>
+<blockquote>
+<p>同样，可以使用with进行锁的添加和释放。</p>
+</blockquote>
+<h3 id="使用进程池"><a href="#使用进程池" class="headerlink" title="使用进程池"></a>使用进程池</h3><h4 id="同步添加任务"><a href="#同步添加任务" class="headerlink" title="同步添加任务"></a>同步添加任务</h4><p>代码：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> random</span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process, RLock</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WriteProcess</span><span class="hljs-params">(Process)</span>:</span></span><br><span class="line">    <span class="hljs-string">""" 写入文件 """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, file_name, num, rlock, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="hljs-comment"># 文件的名称</span></span><br><span class="line">        super().__init__(*args, **kwargs)</span><br><span class="line">        self.file_name = file_name</span><br><span class="line">        self.num = num</span><br><span class="line">        <span class="hljs-comment"># 锁对象</span></span><br><span class="line">        self.rlock = rlock</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span></span><br><span class="line">        <span class="hljs-string">""" 写入文件的主要业务逻辑 """</span></span><br><span class="line">        <span class="hljs-keyword">try</span>:</span><br><span class="line">            <span class="hljs-comment"># 添加锁</span></span><br><span class="line">            self.rlock.acquire()</span><br><span class="line">            print(<span class="hljs-string">'locked'</span>)</span><br><span class="line">            self.rlock.acquire()</span><br><span class="line">            print(<span class="hljs-string">'relocked'</span>)</span><br><span class="line">            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):</span><br><span class="line">                content = <span class="hljs-string">'现在是：&#123;0&#125; : &#123;1&#125; - &#123;2&#125;\n'</span>.format(</span><br><span class="line">                    self.name,</span><br><span class="line">                    self.pid,</span><br><span class="line">                    self.num</span><br><span class="line">                )</span><br><span class="line">                <span class="hljs-keyword">with</span> open(self.file_name, <span class="hljs-string">'a+'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:</span><br><span class="line">                    f.write(content)</span><br><span class="line">                    time.sleep(random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>))</span><br><span class="line">                    print(content)</span><br><span class="line">        <span class="hljs-keyword">finally</span>:</span><br><span class="line">            self.rlock.release()</span><br><span class="line">            self.rlock.release()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    file_name = <span class="hljs-string">'test.txt'</span></span><br><span class="line">    <span class="hljs-comment"># 锁的对象</span></span><br><span class="line">    rlock = RLock()</span><br><span class="line">    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):</span><br><span class="line">        p = WriteProcess(file_name, x, rlock)</span><br><span class="line">        p.start()</span><br></pre></td></tr></table></figure>
+
+<h4 id="异步添加任务"><a href="#异步添加任务" class="headerlink" title="异步添加任务"></a>异步添加任务</h4><p>代码：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> random</span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> current_process, Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(file_name, num)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    进程执行的业务逻辑</span></span><br><span class="line"><span class="hljs-string">    往文件中写入数据</span></span><br><span class="line"><span class="hljs-string">    :param file_name: str 文件名称</span></span><br><span class="line"><span class="hljs-string">    :param num: int 写入的数字</span></span><br><span class="line"><span class="hljs-string">    :return: str 写入的结果</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    <span class="hljs-keyword">with</span> open(file_name, <span class="hljs-string">'a+'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:</span><br><span class="line">        <span class="hljs-comment"># 当前的进程</span></span><br><span class="line">        now_process = current_process()</span><br><span class="line">        <span class="hljs-comment"># 写入的内容</span></span><br><span class="line">        content = <span class="hljs-string">'&#123;0&#125; - &#123;1&#125; - &#123;2&#125;'</span>.format(</span><br><span class="line">            now_process.name,</span><br><span class="line">            now_process.pid,</span><br><span class="line">            num</span><br><span class="line">        )</span><br><span class="line">        f.write(content)</span><br><span class="line">        f.write(<span class="hljs-string">'\n'</span>)</span><br><span class="line">        <span class="hljs-comment"># 写完之后随机休息1-5秒</span></span><br><span class="line">        time.sleep(random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>))</span><br><span class="line">        print(content)</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-string">'ok'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    file_name = <span class="hljs-string">'test_pool.txt'</span></span><br><span class="line">    <span class="hljs-comment"># 进程池</span></span><br><span class="line">    pool = Pool(<span class="hljs-number">2</span>)</span><br><span class="line">    rest_list = []</span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">20</span>):</span><br><span class="line">        <span class="hljs-comment"># 异步添加任务</span></span><br><span class="line">        rest = pool.apply_async(run, args=(file_name, i))</span><br><span class="line">        rest_list.append(rest)</span><br><span class="line">        print(<span class="hljs-string">'&#123;0&#125; --- &#123;1&#125;'</span>.format(i ,rest))</span><br><span class="line">    <span class="hljs-comment"># 关闭池子</span></span><br><span class="line">    pool.close()</span><br><span class="line">    pool.join()</span><br><span class="line">    <span class="hljs-comment"># 查看异步执行的结果</span></span><br><span class="line">    print(rest_list[<span class="hljs-number">0</span>].get())</span><br></pre></td></tr></table></figure>
+
+<p>PS：如果要用进程池的话，最好是用函数的方法实现，面向对象的方法相对的会比较麻烦。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7"><i class="fa fa-tag"></i></span>
+                    <a class="has-link-grey -link" href="/tags/Python/">Python</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/d42a67266c2d3850.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/c88177c3e1d320ee.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/13/Py_Coroutine_1/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Python协程学习笔记</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/12/Py_thread_1/">
+                <span class="level-item">Python线程学习笔记</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NTc2Ny8yMjI3OA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+<!-- 百度自动推送 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></div>
+                
+
+
+
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#进程">
+        <span class="has-mr-6">1</span>
+        <span>进程</span>
+        </a></li><li>
+        <a class="is-flex" href="#进程模块">
+        <span class="has-mr-6">2</span>
+        <span>进程模块</span>
+        </a></li><li>
+        <a class="is-flex" href="#进程的实现">
+        <span class="has-mr-6">3</span>
+        <span>进程的实现</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#函数实现：">
+        <span class="has-mr-6">3.1</span>
+        <span>函数实现：</span>
+        </a></li><li>
+        <a class="is-flex" href="#面向对象实现：">
+        <span class="has-mr-6">3.2</span>
+        <span>面向对象实现：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#进程之间的通信">
+        <span class="has-mr-6">4</span>
+        <span>进程之间的通信</span>
+        </a></li><li>
+        <a class="is-flex" href="#多进程中的锁">
+        <span class="has-mr-6">5</span>
+        <span>多进程中的锁</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Lock">
+        <span class="has-mr-6">5.1</span>
+        <span>Lock()</span>
+        </a></li><li>
+        <a class="is-flex" href="#Rlock">
+        <span class="has-mr-6">5.2</span>
+        <span>Rlock()</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#使用进程池">
+        <span class="has-mr-6">6</span>
+        <span>使用进程池</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#同步添加任务">
+        <span class="has-mr-6">6.1</span>
+        <span>同步添加任务</span>
+        </a></li><li>
+        <a class="is-flex" href="#异步添加任务">
+        <span class="has-mr-6">6.2</span>
+        <span>异步添加任务</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/avatar.png" alt="GenmCai">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        GenmCai
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Be a salted fish with a dream
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Ningbo Zhejiang</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/GenmCai" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://nbutacm.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">nbutacm</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">nbutacm.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://xor-star.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">郭吕建</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">xor-star.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://llfzllfz.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">llfz</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">llfzllfz.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/ACM/">
+            <span class="level-start">
+                <span class="level-item">ACM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/正则表达式/">
+            <span class="level-start">
+                <span class="level-item">正则表达式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/ACM/" style="font-size: 16.67px;">ACM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/内存管理/" style="font-size: 10px;">内存管理</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a> <a href="/tags/线段树/" style="font-size: 16.67px;">线段树</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/13/Py_Coroutine_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_Coroutine_1.jpg" alt="Python协程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T15:13:56.000Z">2019-08-13</time></div>
+                    <a href="/2019/08/13/Py_Coroutine_1/" class="has-link-black-ter is-size-6">Python协程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/13/Py_process_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_process_1.jpg" alt="Python进程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T05:57:34.000Z">2019-08-13</time></div>
+                    <a href="/2019/08/13/Py_process_1/" class="has-link-black-ter is-size-6">Python进程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/12/Py_thread_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_thread_1.jpg" alt="Python线程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T09:32:58.000Z">2019-08-12</time></div>
+                    <a href="/2019/08/12/Py_thread_1/" class="has-link-black-ter is-size-6">Python线程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/11/Py_multithreading_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_multithreading_1.jpg" alt="Python多线程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-11T05:35:46.000Z">2019-08-11</time></div>
+                    <a href="/2019/08/11/Py_multithreading_1/" class="has-link-black-ter is-size-6">Python多线程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/10/Py_Mem_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_Memory_management.jpg" alt="Python内存管理机制">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-10T11:45:31.000Z">2019-08-10</time></div>
+                    <a href="/2019/08/10/Py_Mem_1/" class="has-link-black-ter is-size-6">Python内存管理机制</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/内存管理/">
+                        <span class="tag">内存管理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/并查集/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/模拟/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/正则表达式/">
+                        <span class="tag">正则表达式</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/线段树/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="Python进程学习笔记" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 GenmCai&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <!-- <span id="busuanzi_container_site_uv"> -->
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                <!-- </span> -->
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    <!-- 雪花特效 -->
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>

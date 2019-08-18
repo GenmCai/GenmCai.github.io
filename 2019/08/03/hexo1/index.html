@@ -17,7 +17,7 @@
 <meta property="og:description" content="个人使用的hexo主题是伊卡洛斯(icarus)，虽然应该对下面的操作没有影响，但姑且还是说一下好了。域名控制管理平台是华为云  1.购买域名(华为云版)">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/miku1.jpg">
-<meta property="og:updated_time" content="2019-08-08T03:31:38.740Z">
+<meta property="og:updated_time" content="2019-08-17T05:04:47.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 绑定个人域名（华为云版）">
 <meta name="twitter:description" content="个人使用的hexo主题是伊卡洛斯(icarus)，虽然应该对下面的操作没有影响，但姑且还是说一下好了。域名控制管理平台是华为云  1.购买域名(华为云版)">
@@ -194,14 +194,14 @@
 <p>个人使用的hexo主题是<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">伊卡洛斯(icarus)</a>，虽然应该对下面的操作没有影响，但姑且还是说一下好了。<br><br>域名控制管理平台是<a href="https://www.huaweicloud.com/" target="_blank" rel="noopener">华为云</a></p>
 </blockquote>
 <h2 id="1-购买域名-华为云版"><a href="#1-购买域名-华为云版" class="headerlink" title="1.购买域名(华为云版)"></a>1.购买域名(华为云版)</h2><a id="more"></a>
-<p>1、进入华为云域名注册<a href="https://www.huaweicloud.com/product/domain.html" target="_blank" rel="noopener">https://www.huaweicloud.com/product/domain.html</a>，搜索自己喜欢的域名。<br><br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/1.png" width="50%" heigh="50%"></p>
-<p>2、选择自己喜欢的域名（建议选择常见的，比如说：com，cn，net之类的，考虑到兼容性的问题），然后进行购买。<br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/2.png" width="50%" heigh="50%"></p>
+<p>1、进入华为云域名注册<a href="https://www.huaweicloud.com/product/domain.html" target="_blank" rel="noopener">https://www.huaweicloud.com/product/domain.html</a>，搜索自己喜欢的域名。<br><br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/1.png" width="50%" height="50%"></p>
+<p>2、选择自己喜欢的域名（建议选择常见的，比如说：com，cn，net之类的，考虑到兼容性的问题），然后进行购买。<br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/2.png" width="50%" height="50%"></p>
 <p>3、选择好要购买的期限和域名信息模板（没有的自己建一个，里面的要填写的信息没有特别要讲究的）。</p>
 <p>Node:要注意的就是域名购买后，域名信息要实名认证成功后，购买的域名才可以被解析（通俗的说：能被使用）</p>
 <h2 id="2、绑定域名"><a href="#2、绑定域名" class="headerlink" title="2、绑定域名"></a>2、绑定域名</h2><blockquote>
 <p>前提是域名到账户上，并且成功实名认证后  </p>
 </blockquote>
-<p>1、进入华为云控制台，在华为云服务搜索框中搜素 <code>云解析服务 DNS</code>，然后进入。<br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/4.png" width="50%" heigh="50%"></p>
+<p>1、进入华为云控制台，在华为云服务搜索框中搜素 <code>云解析服务 DNS</code>，然后进入。<br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/4.png" width="50%" height="50%"></p>
 <p>2、一般来说是在<code>公网解析</code>中，在里面可以看到你购买成功的域名，然后点击解析，不用管其它的，直接点击<img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/5.png" alt>进行设置。填入信息后，确定即可添加成功。<br><br></p>
 <style>
 table th:first-of-type {
@@ -249,7 +249,7 @@ table th:first-of-type {
 <p>下面出现的IPv4地址即是 A 所需的值</p>
 </blockquote>
 <p>3、进入github，到存放网站的仓库，Settings -&gt; Options -&gt; GitHub Pages -&gt; Custom domain -&gt; 填写需要绑定的个人域名 点击save后，网站上会提示是否成功，如果失败并且自己解决不了，可以在下面留言，我看到后会尽力帮你解决。</p>
-<img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/6.png" width="50%" heigh="50%">
+<img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/6.png" width="50%" height="50%">
 
 <p>4、最后一步，在hexo的根目录下source 中添加一个无后缀名的文件（文件名：CNAME），里面内容填写个人域名(例：<code>www.genmcai.com</code>，至于有些同学会问怎么写入，这个可以直接先txt填入内容后删掉后缀名，或者用VS code之类的打开无后缀名的文件，也能写入。</p>
 <blockquote>
@@ -409,7 +409,7 @@ table th:first-of-type {
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        6
+                        13
                     </p>
                 </div>
             </div>
@@ -419,7 +419,7 @@ table th:first-of-type {
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        5
                     </p>
                 </div>
             </div>
@@ -429,7 +429,7 @@ table th:first-of-type {
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        10
                     </p>
                 </div>
             </div>
@@ -510,12 +510,28 @@ table th:first-of-type {
                 <span class="level-item tag">3</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Hexo/">
             <span class="level-start">
                 <span class="level-item">Hexo</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/正则表达式/">
@@ -537,7 +553,7 @@ table th:first-of-type {
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACM/" style="font-size: 20px;">ACM</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 15px;">正则表达式</a> <a href="/tags/线段树/" style="font-size: 20px;">线段树</a>
+        <a href="/tags/ACM/" style="font-size: 16.67px;">ACM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/内存管理/" style="font-size: 10px;">内存管理</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a> <a href="/tags/线段树/" style="font-size: 16.67px;">线段树</a>
     </div>
 </div>
 
@@ -554,18 +570,18 @@ table th:first-of-type {
         
         <article class="media">
             
-            <a href="/2019/08/06/RE2/" class="media-left">
+            <a href="/2019/08/13/Py_Coroutine_1/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Settingsum.png" alt="常用正则表达式">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_Coroutine_1.jpg" alt="Python协程学习笔记">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-06T10:11:43.000Z">2019-08-06</time></div>
-                    <a href="/2019/08/06/RE2/" class="has-link-black-ter is-size-6">常用正则表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T15:13:56.000Z">2019-08-13</time></div>
+                    <a href="/2019/08/13/Py_Coroutine_1/" class="has-link-black-ter is-size-6">Python协程学习笔记</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/正则表达式/">正则表达式</a>
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                     </p>
                 </div>
             </div>
@@ -573,18 +589,18 @@ table th:first-of-type {
         
         <article class="media">
             
-            <a href="/2019/08/05/RE1/" class="media-left">
+            <a href="/2019/08/13/Py_process_1/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/sakura.png" alt="正则表达式(RegEx)集合（初级）">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_process_1.jpg" alt="Python进程学习笔记">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-05T14:00:00.000Z">2019-08-05</time></div>
-                    <a href="/2019/08/05/RE1/" class="has-link-black-ter is-size-6">正则表达式(RegEx)集合（初级）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T05:57:34.000Z">2019-08-13</time></div>
+                    <a href="/2019/08/13/Py_process_1/" class="has-link-black-ter is-size-6">Python进程学习笔记</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/正则表达式/">正则表达式</a>
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                     </p>
                 </div>
             </div>
@@ -592,18 +608,18 @@ table th:first-of-type {
         
         <article class="media">
             
-            <a href="/2019/08/03/hexo1/" class="media-left">
+            <a href="/2019/08/12/Py_thread_1/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/miku1.jpg" alt="Hexo 绑定个人域名（华为云版）">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_thread_1.jpg" alt="Python线程学习笔记">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-03T10:11:43.000Z">2019-08-03</time></div>
-                    <a href="/2019/08/03/hexo1/" class="has-link-black-ter is-size-6">Hexo 绑定个人域名（华为云版）</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T09:32:58.000Z">2019-08-12</time></div>
+                    <a href="/2019/08/12/Py_thread_1/" class="has-link-black-ter is-size-6">Python线程学习笔记</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                     </p>
                 </div>
             </div>
@@ -611,18 +627,18 @@ table th:first-of-type {
         
         <article class="media">
             
-            <a href="/2019/07/19/CodeForces12D/" class="media-left">
+            <a href="/2019/08/11/Py_multithreading_1/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/CodeForces%20-%2012D.jpg" alt="CodeForces - 12D Ball 线段树">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_multithreading_1.jpg" alt="Python多线程学习笔记">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T11:12:46.000Z">2019-07-19</time></div>
-                    <a href="/2019/07/19/CodeForces12D/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-11T05:35:46.000Z">2019-08-11</time></div>
+                    <a href="/2019/08/11/Py_multithreading_1/" class="has-link-black-ter is-size-6">Python多线程学习笔记</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                     </p>
                 </div>
             </div>
@@ -630,18 +646,18 @@ table th:first-of-type {
         
         <article class="media">
             
-            <a href="/2019/07/19/UVA11992/" class="media-left">
+            <a href="/2019/08/10/Py_Mem_1/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/UVA%20-%2011992.jpg" alt="CodeForces - 12D Ball 线段树">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_Memory_management.jpg" alt="Python内存管理机制">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T10:55:21.000Z">2019-07-19</time></div>
-                    <a href="/2019/07/19/UVA11992/" class="has-link-black-ter is-size-6">CodeForces - 12D Ball 线段树</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-10T11:45:31.000Z">2019-08-10</time></div>
+                    <a href="/2019/08/10/Py_Mem_1/" class="has-link-black-ter is-size-6">Python内存管理机制</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ACM/">ACM</a>
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
                     </p>
                 </div>
             </div>
@@ -665,7 +681,7 @@ table th:first-of-type {
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -702,6 +718,13 @@ table th:first-of-type {
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
                         <span class="tag is-grey">1</span>
@@ -709,8 +732,22 @@ table th:first-of-type {
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/位运算/">
                         <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/内存管理/">
+                        <span class="tag">内存管理</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

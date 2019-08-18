@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Git常用命令 - GenmCai</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Git(读音为/gɪt/。)是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 —— 百度百科">
+<meta name="keywords" content="Git，常用命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用命令">
+<meta property="og:url" content="https://www.genmcai.com/2019/08/07/Git_Cmd/index.html">
+<meta property="og:site_name" content="GenmCai">
+<meta property="og:description" content="Git(读音为/gɪt/。)是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 —— 百度百科">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Git_Cmd.jpg">
+<meta property="og:updated_time" content="2019-08-18T05:11:59.606Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git常用命令">
+<meta name="twitter:description" content="Git(读音为/gɪt/。)是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 —— 百度百科">
+<meta name="twitter:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Git_Cmd.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/f.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- 设置文章的关键字 -->
+
+<meta name="keywords" content="Git，常用命令,GenmCai,hexo,华为云">
+
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="Git常用命令" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="https://github.com/GenmCai">Github</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/GenmCai">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Git_Cmd.jpg" alt="Git常用命令">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-07T04:31:21.000Z">2019-08-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1241 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Git常用命令
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>Git(读音为/gɪt/。)是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 —— 百度百科</p>
+</blockquote>
+<a id="more"></a>
+<p>PS：这篇博文相当于字典，方便查阅用。而如果想要重零开始学习Git的使用技巧，推荐去<a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">廖雪峰的官方网站</a>上学习。还有就是，下面的<code>$</code>都是可以省略的。</p>
+<h3 id="基础操作命令"><a href="#基础操作命令" class="headerlink" title="基础操作命令"></a>基础操作命令</h3><h4 id="git-init"><a href="#git-init" class="headerlink" title="$ git init"></a>$ git init</h4><p>可以通过这个命令把当前目录变成Git可以进行管理的仓库，会生成隐藏的<code>.git</code>文件。</p>
+<h4 id="git-add-file-name"><a href="#git-add-file-name" class="headerlink" title="$ git add file_name"></a>$ git add file_name</h4><p>通过这个命令可以指定的要添加的当前目录中的文件，也可以使用<code>git add .</code>直接上传当前目录下所有的文件。</p>
+<h4 id="git-commit-m-‘’"><a href="#git-commit-m-‘’" class="headerlink" title="$ git commit -m ‘’"></a>$ git commit -m ‘’</h4><p>正式提交之前<code>git add</code>所添加的文件，后面则是当前提交所要对自己或者他人说明的信息。比如说<code>&#39;v0.1版本&#39;</code>。</p>
+<h4 id="git-status"><a href="#git-status" class="headerlink" title="$ git status"></a>$ git status</h4><p>此命令可以查看仓库当前的状态，包括有哪些修改后的文件没有添加或者提交到仓库中。</p>
+<h4 id="git-diff-file-name"><a href="#git-diff-file-name" class="headerlink" title="$ git diff file_name"></a>$ git diff file_name</h4><p>diff即difference，顾名思义就是查看文件名所对应的文件有什么跟仓库中不同的敌方，显示格式则是Unix通用的diff格式。</p>
+<h4 id="git-log"><a href="#git-log" class="headerlink" title="$ git log"></a>$ git log</h4><p>很明显，就是查看当前git的使用日志，俗称历史记。这里面会提供历史的提交记录，在每条提交记录，会有版本回退所需的专属版本号。在后面显示的<code>(HEAD -&gt; 分支名)</code>即这个分支使用的是这条记录的版本。</p>
+<h4 id="git-reflog"><a href="#git-reflog" class="headerlink" title="$ git reflog"></a>$ git reflog</h4><p>这个命令记录了每一次的命令，所以版本回退后，忘记了版本号，可以使用这个命令进行查看。</p>
+<h4 id="cat-file-name"><a href="#cat-file-name" class="headerlink" title="$ cat file_name"></a>$ cat file_name</h4><p>则是可以查看文件内的内容</p>
+<h4 id="git-rm-file-name"><a href="#git-rm-file-name" class="headerlink" title="$ git rm file_name"></a>$ git rm file_name</h4><p>如果文件管理器中的文件删除了，那么就真正的在版本库中删除，那么就需要这个命令，然后<code>git commit</code>即可，要注意的一点是，如果已经在文件管理器中删除了文件，那<code>git add</code>的效果跟<code>git rm</code>是一样的。</p>
+<h3 id="版本回退操作命令"><a href="#版本回退操作命令" class="headerlink" title="版本回退操作命令"></a>版本回退操作命令</h3><h4 id="git-reset-–hard-HEAD"><a href="#git-reset-–hard-HEAD" class="headerlink" title="$ git reset –hard HEAD^"></a>$ git reset –hard HEAD^</h4><p>这个命令的意思则是回退到上一个版本。举一反三，<code>HEAD^^</code>则是回到上上个版本。</p>
+<h4 id="git-reset-–hard-版本号"><a href="#git-reset-–hard-版本号" class="headerlink" title="$ git reset –hard 版本号"></a>$ git reset –hard 版本号</h4><p>如果使用了版本回退，那之前的版本就发现用<code>git log</code>无法进行查看，这时就可以使用之前记住的版本号进行回退，不需要全部的输入版本号，当然也不能只输入前几个数字。要让Git知道这个是唯一的，让他知道要找的是谁。</p>
+<h4 id="git-checkout-–-file-name"><a href="#git-checkout-–-file-name" class="headerlink" title="$ git checkout – file_name"></a>$ git checkout – file_name</h4><p>这个命令可以把<code>file_name</code>文件在工作区的修改全部的撤回，这里有两种情况：<br><br>1、文件修改后没有放入暂存区，撤销修改后就回到跟版本库中一摸一样的状态。<br><br>2、已经添加到暂存区，又做出了修改。撤销修改就回到了暂存区后的状态。<br><br>即回到最近一次<code>git commit</code>或者<code>git add</code>时的状态。</p>
+<h4 id="git-reset-HEAD"><a href="#git-reset-HEAD" class="headerlink" title="$ git reset HEAD"></a>$ git reset HEAD</h4><p>这个命令可以把<code>file_name</code>文件在工作区的修改全部的撤回。把暂存区中的修改回退到工作区，当单单使用<code>HEAD</code>时，就是表示时最新版本。</p>
+<h3 id="远程库操作命令"><a href="#远程库操作命令" class="headerlink" title="远程库操作命令"></a>远程库操作命令</h3><h4 id="git-remote-add-origin-HTTP-Path-SSH-Path"><a href="#git-remote-add-origin-HTTP-Path-SSH-Path" class="headerlink" title="$ git remote add origin HTTP_Path|SSH_Path"></a>$ git remote add origin HTTP_Path|SSH_Path</h4><p>这个命令则是让本地的git关联到远程库中，而其中的origin则是远程库的名字，也可以改成其他的。</p>
+<h4 id="git-push-u-origin-分支名"><a href="#git-push-u-origin-分支名" class="headerlink" title="$ git push -u origin 分支名"></a>$ git push -u origin 分支名</h4><p>则是把本地库中所有内容推送到远程库上。而<code>git push</code>实际上就就是是把当前分支推送到远程。而由于是第一次关联这个远程库，所以加上<code>-u</code>参数，可以让本地的分支跟远程的分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<h4 id="git-clone-HTTP-Path-SSH-Path"><a href="#git-clone-HTTP-Path-SSH-Path" class="headerlink" title="$ git clone HTTP_Path|SSH_Path"></a>$ git clone HTTP_Path|SSH_Path</h4><p>这个命令则是把网上的远程库给克隆下来。</p>
+<h3 id="分支操作命令"><a href="#分支操作命令" class="headerlink" title="分支操作命令"></a>分支操作命令</h3><h4 id="git-branch"><a href="#git-branch" class="headerlink" title="$ git branch"></a>$ git branch</h4><p>查看分支，在前面标有<code>*</code>的是当前使用分支。</p>
+<h4 id="git-branch-分支名"><a href="#git-branch-分支名" class="headerlink" title="$ git branch 分支名"></a>$ git branch 分支名</h4><p>创建分支。</p>
+<h4 id="git-checkout-分支名"><a href="#git-checkout-分支名" class="headerlink" title="$ git checkout 分支名"></a>$ git checkout 分支名</h4><p>切换分支。</p>
+<h4 id="git-checkout-b-分支名"><a href="#git-checkout-b-分支名" class="headerlink" title="$ git checkout -b 分支名"></a>$ git checkout -b 分支名</h4><p>创建+切换分支。</p>
+<h4 id="git-merge-分支名"><a href="#git-merge-分支名" class="headerlink" title="$ git merge 分支名"></a>$ git merge 分支名</h4><p>合并某分支到当前分支。</p>
+<h4 id="git-branch-d-分支名"><a href="#git-branch-d-分支名" class="headerlink" title="$ git branch -d 分支名"></a>$ git branch -d 分支名</h4><p>删除分支。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7"><i class="fa fa-tag"></i></span>
+                    <a class="has-link-grey -link" href="/tags/Git/">Git</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/d42a67266c2d3850.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/c88177c3e1d320ee.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/08/Py_Os_DateTime/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Python-OS模块-DateTime模块</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/06/RE2/">
+                <span class="level-item">常用正则表达式</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NTc2Ny8yMjI3OA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+<!-- 百度自动推送 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></div>
+                
+
+
+
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#基础操作命令">
+        <span class="has-mr-6">1</span>
+        <span>基础操作命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#git-init">
+        <span class="has-mr-6">1.1</span>
+        <span>$ git init</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-add-file-name">
+        <span class="has-mr-6">1.2</span>
+        <span>$ git add file_name</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-commit-m-‘’">
+        <span class="has-mr-6">1.3</span>
+        <span>$ git commit -m ‘’</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-status">
+        <span class="has-mr-6">1.4</span>
+        <span>$ git status</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-diff-file-name">
+        <span class="has-mr-6">1.5</span>
+        <span>$ git diff file_name</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-log">
+        <span class="has-mr-6">1.6</span>
+        <span>$ git log</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-reflog">
+        <span class="has-mr-6">1.7</span>
+        <span>$ git reflog</span>
+        </a></li><li>
+        <a class="is-flex" href="#cat-file-name">
+        <span class="has-mr-6">1.8</span>
+        <span>$ cat file_name</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-rm-file-name">
+        <span class="has-mr-6">1.9</span>
+        <span>$ git rm file_name</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#版本回退操作命令">
+        <span class="has-mr-6">2</span>
+        <span>版本回退操作命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#git-reset-–hard-HEAD">
+        <span class="has-mr-6">2.1</span>
+        <span>$ git reset –hard HEAD^</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-reset-–hard-版本号">
+        <span class="has-mr-6">2.2</span>
+        <span>$ git reset –hard 版本号</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-checkout-–-file-name">
+        <span class="has-mr-6">2.3</span>
+        <span>$ git checkout – file_name</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-reset-HEAD">
+        <span class="has-mr-6">2.4</span>
+        <span>$ git reset HEAD</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#远程库操作命令">
+        <span class="has-mr-6">3</span>
+        <span>远程库操作命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#git-remote-add-origin-HTTP-Path-SSH-Path">
+        <span class="has-mr-6">3.1</span>
+        <span>$ git remote add origin HTTP_Path|SSH_Path</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-push-u-origin-分支名">
+        <span class="has-mr-6">3.2</span>
+        <span>$ git push -u origin 分支名</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-clone-HTTP-Path-SSH-Path">
+        <span class="has-mr-6">3.3</span>
+        <span>$ git clone HTTP_Path|SSH_Path</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#分支操作命令">
+        <span class="has-mr-6">4</span>
+        <span>分支操作命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#git-branch">
+        <span class="has-mr-6">4.1</span>
+        <span>$ git branch</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-branch-分支名">
+        <span class="has-mr-6">4.2</span>
+        <span>$ git branch 分支名</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-checkout-分支名">
+        <span class="has-mr-6">4.3</span>
+        <span>$ git checkout 分支名</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-checkout-b-分支名">
+        <span class="has-mr-6">4.4</span>
+        <span>$ git checkout -b 分支名</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-merge-分支名">
+        <span class="has-mr-6">4.5</span>
+        <span>$ git merge 分支名</span>
+        </a></li><li>
+        <a class="is-flex" href="#git-branch-d-分支名">
+        <span class="has-mr-6">4.6</span>
+        <span>$ git branch -d 分支名</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/avatar.png" alt="GenmCai">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        GenmCai
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Be a salted fish with a dream
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Ningbo Zhejiang</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/GenmCai" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://nbutacm.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">nbutacm</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">nbutacm.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://xor-star.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">郭吕建</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">xor-star.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://llfzllfz.github.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">llfz</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">llfzllfz.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/ACM/">
+            <span class="level-start">
+                <span class="level-item">ACM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/正则表达式/">
+            <span class="level-start">
+                <span class="level-item">正则表达式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/ACM/" style="font-size: 16.67px;">ACM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/内存管理/" style="font-size: 10px;">内存管理</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 13.33px;">正则表达式</a> <a href="/tags/线段树/" style="font-size: 16.67px;">线段树</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/13/Py_Coroutine_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_Coroutine_1.jpg" alt="Python协程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T15:13:56.000Z">2019-08-13</time></div>
+                    <a href="/2019/08/13/Py_Coroutine_1/" class="has-link-black-ter is-size-6">Python协程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/13/Py_process_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_process_1.jpg" alt="Python进程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T05:57:34.000Z">2019-08-13</time></div>
+                    <a href="/2019/08/13/Py_process_1/" class="has-link-black-ter is-size-6">Python进程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/12/Py_thread_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_thread_1.jpg" alt="Python线程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-12T09:32:58.000Z">2019-08-12</time></div>
+                    <a href="/2019/08/12/Py_thread_1/" class="has-link-black-ter is-size-6">Python线程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/11/Py_multithreading_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_multithreading_1.jpg" alt="Python多线程学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-11T05:35:46.000Z">2019-08-11</time></div>
+                    <a href="/2019/08/11/Py_multithreading_1/" class="has-link-black-ter is-size-6">Python多线程学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/10/Py_Mem_1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/Py_Memory_management.jpg" alt="Python内存管理机制">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-10T11:45:31.000Z">2019-08-10</time></div>
+                    <a href="/2019/08/10/Py_Mem_1/" class="has-link-black-ter is-size-6">Python内存管理机制</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/内存管理/">
+                        <span class="tag">内存管理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/并查集/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/模拟/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/正则表达式/">
+                        <span class="tag">正则表达式</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/线段树/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="Git常用命令" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 GenmCai&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <!-- <span id="busuanzi_container_site_uv"> -->
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                <!-- </span> -->
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    <!-- 雪花特效 -->
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
