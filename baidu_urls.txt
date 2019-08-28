@@ -1,3 +1,4 @@
+https://www.genmcai.com/2019/08/20/MySQL_Connector/
 https://www.genmcai.com/2019/08/19/MySql_TransactionMechanism/
 https://www.genmcai.com/2019/08/18/MySql_data_import_export/
 https://www.genmcai.com/2019/08/17/MySqlFunction/
@@ -7,4 +8,3 @@ https://www.genmcai.com/2019/08/15/MySqlDDL1/
 https://www.genmcai.com/2019/08/14/MySqlConfig/
 https://www.genmcai.com/2019/08/14/whatSql/
 https://www.genmcai.com/2019/08/13/Py_Coroutine_1/
-https://www.genmcai.com/2019/08/13/Py_process_1/
