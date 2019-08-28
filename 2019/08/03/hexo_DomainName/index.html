@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>Hexo 绑定个人域名（华为云版） - GenmCai</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="个人使用的hexo主题是伊卡洛斯(icarus)，虽然应该对下面的操作没有影响，但姑且还是说一下好了。域名控制管理平台是华为云  1.购买域名(华为云版)">
+<meta name="keywords" content="hexo,华为云,Hexo 绑定个人域名（华为云版）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 绑定个人域名（华为云版）">
+<meta property="og:url" content="https://www.genmcai.com/2019/08/03/hexo_DomainName/index.html">
+<meta property="og:site_name" content="GenmCai">
+<meta property="og:description" content="个人使用的hexo主题是伊卡洛斯(icarus)，虽然应该对下面的操作没有影响，但姑且还是说一下好了。域名控制管理平台是华为云  1.购买域名(华为云版)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/miku1.jpg">
+<meta property="og:updated_time" content="2019-08-17T05:04:47.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo 绑定个人域名（华为云版）">
+<meta name="twitter:description" content="个人使用的hexo主题是伊卡洛斯(icarus)，虽然应该对下面的操作没有影响，但姑且还是说一下好了。域名控制管理平台是华为云  1.购买域名(华为云版)">
+<meta name="twitter:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/miku1.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/f.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- 设置文章的关键字 -->
+
+<meta name="keywords" content="hexo,华为云,Hexo 绑定个人域名（华为云版）,GenmCai,hexo,华为云">
+
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="Hexo 绑定个人域名（华为云版）" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="https://github.com/GenmCai">Github</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/GenmCai">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/miku1.jpg" alt="Hexo 绑定个人域名（华为云版）">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-03T10:11:43.000Z">2019-08-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 979 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Hexo 绑定个人域名（华为云版）
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>个人使用的hexo主题是<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">伊卡洛斯(icarus)</a>，虽然应该对下面的操作没有影响，但姑且还是说一下好了。<br><br>域名控制管理平台是<a href="https://www.huaweicloud.com/" target="_blank" rel="noopener">华为云</a></p>
+</blockquote>
+<h2 id="1-购买域名-华为云版"><a href="#1-购买域名-华为云版" class="headerlink" title="1.购买域名(华为云版)"></a>1.购买域名(华为云版)</h2><a id="more"></a>
+<p>1、进入华为云域名注册<a href="https://www.huaweicloud.com/product/domain.html" target="_blank" rel="noopener">https://www.huaweicloud.com/product/domain.html</a>，搜索自己喜欢的域名。<br><br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/1.png" width="50%" height="50%"></p>
+<p>2、选择自己喜欢的域名（建议选择常见的，比如说：com，cn，net之类的，考虑到兼容性的问题），然后进行购买。<br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/2.png" width="50%" height="50%"></p>
+<p>3、选择好要购买的期限和域名信息模板（没有的自己建一个，里面的要填写的信息没有特别要讲究的）。</p>
+<p>Node:要注意的就是域名购买后，域名信息要实名认证成功后，购买的域名才可以被解析（通俗的说：能被使用）</p>
+<h2 id="2、绑定域名"><a href="#2、绑定域名" class="headerlink" title="2、绑定域名"></a>2、绑定域名</h2><blockquote>
+<p>前提是域名到账户上，并且成功实名认证后  </p>
+</blockquote>
+<p>1、进入华为云控制台，在华为云服务搜索框中搜素 <code>云解析服务 DNS</code>，然后进入。<br><img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/4.png" width="50%" height="50%"></p>
+<p>2、一般来说是在<code>公网解析</code>中，在里面可以看到你购买成功的域名，然后点击解析，不用管其它的，直接点击<img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/5.png" alt>进行设置。填入信息后，确定即可添加成功。<br><br></p>
+<style>
+table th:first-of-type {
+    width: 100px;
+}
+</style>
+<table>
+<thead>
+<tr>
+<th align="left">填写目录</th>
+<th align="left">填写信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">主机记录</td>
+<td align="left">旁边有个问号，里面有详解，我是直接填了<code>www</code></td>
+</tr>
+<tr>
+<td align="left">类型</td>
+<td align="left">普通的只需要A、CNAME（详情的可以看后面的跟的说明），我选择的是<code>CNAME</code></td>
+</tr>
+<tr>
+<td align="left">别名</td>
+<td align="left">不用管，没用到，选<code>否</code></td>
+</tr>
+<tr>
+<td align="left">线路类型</td>
+<td align="left">普通的<code>全网默认</code>就行了</td>
+</tr>
+<tr>
+<td align="left">TTL</td>
+<td align="left">默认，<code>5分钟</code></td>
+</tr>
+<tr>
+<td align="left">值</td>
+<td align="left">CNAME： 填写需要绑定的域名（例：genmcai.github.io） A： 填写需要绑定的IP（查看方法放下面）</td>
+</tr>
+<tr>
+<td align="left">权重</td>
+<td align="left">可选参数，解析记录的权重，可选参数，默认值为1。取值范围：0~100。当域名有多条某一类型的解析记录时，根据权重数值选择解析记录，权重数值越高，优先级越高</td>
+</tr>
+</tbody></table>
+<h3 id="IP查看方法"><a href="#IP查看方法" class="headerlink" title="IP查看方法"></a>IP查看方法</h3><p><code>Ctrl+R</code> 进入 <code>运行</code> 输入 <code>cmd</code> ，输入命令 <code>Ping  域名</code>(例：Ping genmcai.github.io)</p>
+<blockquote>
+<p>下面出现的IPv4地址即是 A 所需的值</p>
+</blockquote>
+<p>3、进入github，到存放网站的仓库，Settings -&gt; Options -&gt; GitHub Pages -&gt; Custom domain -&gt; 填写需要绑定的个人域名 点击save后，网站上会提示是否成功，如果失败并且自己解决不了，可以在下面留言，我看到后会尽力帮你解决。</p>
+<img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/md-user/hexo1/6.png" width="50%" height="50%">
+
+<p>4、最后一步，在hexo的根目录下source 中添加一个无后缀名的文件（文件名：CNAME），里面内容填写个人域名(例：<code>www.genmcai.com</code>，至于有些同学会问怎么写入，这个可以直接先txt填入内容后删掉后缀名，或者用VS code之类的打开无后缀名的文件，也能写入。</p>
+<blockquote>
+<p>这一步可以说挺重要的，如果没有这个文件，hexo g -d提交后，页面就会变成404，这个时候重复第3个步骤就能恢复，不过每次都这样很麻烦，而且可能会清空博客访问记录。</p>
+</blockquote>
+<p>  至此，个人域名的绑定就结束了，重新使用自己的个人域名进行访问，就能访问到绑定的hexo了。如果出现错误，有可能是主题版本的原因，也有可能是其他的原因。欢迎有疑问的小伙伴在下面留言。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7"><i class="fa fa-tag"></i></span>
+                    <a class="has-link-grey -link" href="/tags/Hexo/">Hexo</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/d42a67266c2d3850.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/c88177c3e1d320ee.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/05/RE1/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">正则表达式(RegEx)集合（初级）</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/19/CodeForces12D/">
+                <span class="level-item">CodeForces - 12D Ball 线段树</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NTc2Ny8yMjI3OA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+<!-- 百度自动推送 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></div>
+                
+
+
+
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/avatar.png" alt="GenmCai">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        GenmCai
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Be a salted fish with a dream
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Ningbo Zhejiang</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        21
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/GenmCai" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://nbutacm.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NBUTACM</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">nbutacm.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/ACM/">
+            <span class="level-start">
+                <span class="level-item">ACM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/MySQL/">
+            <span class="level-start">
+                <span class="level-item">MySQL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SQL/">
+            <span class="level-start">
+                <span class="level-item">SQL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/正则表达式/">
+            <span class="level-start">
+                <span class="level-item">正则表达式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/ACM/" style="font-size: 15px;">ACM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/内存管理/" style="font-size: 10px;">内存管理</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 12.5px;">正则表达式</a> <a href="/tags/线段树/" style="font-size: 15px;">线段树</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/19/MySql_TransactionMechanism/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySql_TransactionMechanism.jpg" alt="MySql事务机制学习笔记（一）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-19T05:27:39.000Z">2019-08-19</time></div>
+                    <a href="/2019/08/19/MySql_TransactionMechanism/" class="has-link-black-ter is-size-6">MySql事务机制学习笔记（一）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/18/MySql_data_import_export/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySql_data_import_export.jpg" alt="MySQL数据的导入与导出">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-18T15:02:42.000Z">2019-08-18</time></div>
+                    <a href="/2019/08/18/MySql_data_import_export/" class="has-link-black-ter is-size-6">MySQL数据的导入与导出</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/17/MySqlFunction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlFunction.jpg" alt="MySQL函数学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-17T10:45:17.000Z">2019-08-17</time></div>
+                    <a href="/2019/08/17/MySqlFunction/" class="has-link-black-ter is-size-6">MySQL函数学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/17/MySqlDML2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlDML2.jpg" alt="MySQL数据操纵语言学习笔记（二）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-17T05:46:34.000Z">2019-08-17</time></div>
+                    <a href="/2019/08/17/MySqlDML2/" class="has-link-black-ter is-size-6">MySQL数据操纵语言学习笔记（二）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/16/MySqlDML1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlDML1.jpg" alt="MySQL数据操纵语言学习笔记（一）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-16T13:29:17.000Z">2019-08-16</time></div>
+                    <a href="/2019/08/16/MySqlDML1/" class="has-link-black-ter is-size-6">MySQL数据操纵语言学习笔记（一）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">18</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL/">
+                        <span class="tag">MySQL</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SQL/">
+                        <span class="tag">SQL</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/内存管理/">
+                        <span class="tag">内存管理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/并查集/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/模拟/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/正则表达式/">
+                        <span class="tag">正则表达式</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/线段树/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="Hexo 绑定个人域名（华为云版）" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 GenmCai&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <!-- <span id="busuanzi_container_site_uv"> -->
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                <!-- </span> -->
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    <!-- 雪花特效 -->
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>MySQL数据库定义语言学习笔记 - GenmCai</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="数据库的范式◆ 构造数据库必须遵循一定得规则，这种规则就是范式。 ◆ 目前关系数据库有6中范式，一般情况下，只满足第三范式即可。">
+<meta name="keywords" content="MySQL,DDL,学习笔记,数据库定义语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL数据库定义语言学习笔记">
+<meta property="og:url" content="https://www.genmcai.com/2019/08/15/MySqlDDL1/index.html">
+<meta property="og:site_name" content="GenmCai">
+<meta property="og:description" content="数据库的范式◆ 构造数据库必须遵循一定得规则，这种规则就是范式。 ◆ 目前关系数据库有6中范式，一般情况下，只满足第三范式即可。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlDDL.jpg">
+<meta property="og:updated_time" content="2019-08-25T12:32:13.309Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL数据库定义语言学习笔记">
+<meta name="twitter:description" content="数据库的范式◆ 构造数据库必须遵循一定得规则，这种规则就是范式。 ◆ 目前关系数据库有6中范式，一般情况下，只满足第三范式即可。">
+<meta name="twitter:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlDDL.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/f.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- 设置文章的关键字 -->
+
+<meta name="keywords" content="MySQL,DDL,学习笔记,数据库定义语言,GenmCai,hexo,华为云">
+
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="MySQL数据库定义语言学习笔记" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="https://github.com/GenmCai">Github</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/GenmCai">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlDDL.jpg" alt="MySQL数据库定义语言学习笔记">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-15T15:57:21.000Z">2019-08-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 923 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                MySQL数据库定义语言学习笔记
+            
+        </h1>
+        <div class="content">
+            <h2 id="数据库的范式"><a href="#数据库的范式" class="headerlink" title="数据库的范式"></a>数据库的范式</h2><p>◆ 构造数据库必须遵循一定得规则，这种规则就是范式。</p>
+<p>◆ 目前关系数据库有6中范式，一般情况下，只满足第三范式即可。</p>
+<a id="more"></a>
+<h3 id="第一范式：原子性"><a href="#第一范式：原子性" class="headerlink" title="第一范式：原子性"></a>第一范式：原子性</h3><p>◆ 第一范式是数据库的基本要求，不满足这一点就不是关系数据库。</p>
+<p>◆ 数据表得每一列都是不可分割得基本数据项，同一列中不能有多个值，也不能存在重复的属性。</p>
+<p>不符合第一范式：</p>
+<table>
+<thead>
+<tr>
+<th>学号</th>
+<th>姓名</th>
+<th>班级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1000</td>
+<td>刘娜</td>
+<td>高三年级1班</td>
+</tr>
+</tbody></table>
+<p>符合第一范式：</p>
+<table>
+<thead>
+<tr>
+<th>学号</th>
+<th>姓名</th>
+<th>年级</th>
+<th>班级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1000</td>
+<td>刘娜</td>
+<td>高三</td>
+<td>1班</td>
+</tr>
+</tbody></table>
+<h3 id="第二范式：唯一性"><a href="#第二范式：唯一性" class="headerlink" title="第二范式：唯一性"></a>第二范式：唯一性</h3><p>◆ 数据表中的每条记录必须是唯一的。为了实现区分，通常要为表加上一个列用于存储唯一标识，这个唯一属性列被称作主键列。</p>
+<p>无法区分重复数据：</p>
+<table>
+<thead>
+<tr>
+<th>学号</th>
+<th>考试成绩</th>
+<th>日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>230</td>
+<td>58</td>
+<td>2018-07-15</td>
+</tr>
+<tr>
+<td>230</td>
+<td>58</td>
+<td>2018-07-15</td>
+</tr>
+</tbody></table>
+<p>数据具有唯一性：</p>
+<table>
+<thead>
+<tr>
+<th>流水号</th>
+<th>学号</th>
+<th>考试成绩</th>
+<th>日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>201807152687</td>
+<td>230</td>
+<td>58</td>
+<td>2018-07-15</td>
+</tr>
+<tr>
+<td>201807152694</td>
+<td>230</td>
+<td>58</td>
+<td>2018-07-15</td>
+</tr>
+</tbody></table>
+<h3 id="第三范式：关联性"><a href="#第三范式：关联性" class="headerlink" title="第三范式：关联性"></a>第三范式：关联性</h3><p>◆ 每列都与主键有直接关系，不存在传递依赖</p>
+<p>违反第三范式：</p>
+<table>
+<thead>
+<tr>
+<th>爸爸</th>
+<th>儿子</th>
+<th>女儿</th>
+<th>女儿的玩具</th>
+<th>女儿的衣服</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陈华</td>
+<td>陈浩</td>
+<td>陈婷婷</td>
+<td>海绵宝宝</td>
+<td>校服</td>
+</tr>
+</tbody></table>
+<p>符合第三范式：</p>
+<table>
+<thead>
+<tr>
+<th>爸爸</th>
+<th>儿子</th>
+<th>女儿</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陈华</td>
+<td>陈浩</td>
+<td>陈婷婷</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>女儿</th>
+<th>女儿的玩具</th>
+<th>女儿的衣服</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陈婷婷</td>
+<td>海绵宝宝</td>
+<td>校服</td>
+</tr>
+</tbody></table>
+<p>◆ 依照第三范式，数据可以拆分保存到不同的数据表，彼此保持关联</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>部门</th>
+<th>电话</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>财务部</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>20</td>
+<td>技术部</td>
+<td>1002</td>
+</tr>
+<tr>
+<td>30</td>
+<td>销售部</td>
+<td>1003</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>姓名</th>
+<th>性别</th>
+<th>部门</th>
+<th>入职日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>陈浩</td>
+<td>男</td>
+<td>10</td>
+<td>2018-05-10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李婷婷</td>
+<td>女</td>
+<td>30</td>
+<td>2018-03-22</td>
+</tr>
+</tbody></table>
+<h2 id="字段约束"><a href="#字段约束" class="headerlink" title="字段约束"></a>字段约束</h2><p>◆ MySQL中的字段约束共有四种：</p>
+<table>
+<thead>
+<tr>
+<th>约束名称</th>
+<th>关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主键约束</td>
+<td>PRIMARY KEY</td>
+<td>字段值唯一，且不能为NULL</td>
+</tr>
+<tr>
+<td>非空约束</td>
+<td>NOT NULL</td>
+<td>字段值不能为NULL</td>
+</tr>
+<tr>
+<td>唯一约束</td>
+<td>UNIQUE</td>
+<td>字段值唯一，且可以为NULL</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>FOREIGN KEY</td>
+<td>保持关联数据的逻辑性</td>
+</tr>
+</tbody></table>
+<h3 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h3><p>◆ 主键约束要求字段的值在全表必须唯一，而且不能为NULL值</p>
+<p>◆ 建议主键一定要使用数字类型，因为数字的检索速度会非常块</p>
+<p>◆ 如果主键是数字类型，还可以设置自动增长</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> t_teacher(</span><br><span class="line">    <span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">    ......</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="非空约束"><a href="#非空约束" class="headerlink" title="非空约束"></a>非空约束</h3><p>◆ 非空约束要求字段的值不能为NULL值</p>
+<p>◆ NULL值以为没有值，而不是 “” 空字符串</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> t_teacher(</span><br><span class="line">    <span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">    <span class="hljs-keyword">name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">200</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">    married <span class="hljs-built_in">BOOLEAN</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">FALSE</span></span><br><span class="line">);</span><br><span class="line"><span class="hljs-comment"># 不能为空时，DEFAULT 默认值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="唯一约束"><a href="#唯一约束" class="headerlink" title="唯一约束"></a>唯一约束</h3><p>◆ 唯一约束要求字段值如果不为NULL，那么在全表必须唯一</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> t_teacher(</span><br><span class="line">    ......</span><br><span class="line">    tel <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">UNIQUE</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><p>◆ 外键约束用来保证关联数据的逻辑关系</p>
+<p>父表：</p>
+<table>
+<thead>
+<tr>
+<th>deptno</th>
+<th>dname</th>
+<th>tel</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>财务部</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>20</td>
+<td>技术部</td>
+<td>1002</td>
+</tr>
+<tr>
+<td>30</td>
+<td>销售部</td>
+<td>1003</td>
+</tr>
+</tbody></table>
+<p>子表：</p>
+<table>
+<thead>
+<tr>
+<th>empno</th>
+<th>name</th>
+<th>sex</th>
+<th>deptno</th>
+<th>hiredate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>陈浩</td>
+<td>男</td>
+<td>10</td>
+<td>2018-05-10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>李婷婷</td>
+<td>女</td>
+<td>30</td>
+<td>2018-03-22</td>
+</tr>
+</tbody></table>
+<p>◆ 外键约束的定义是写在子表上的</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> t_emp(</span><br><span class="line">    empno <span class="hljs-built_in">INT</span> <span class="hljs-keyword">UNSIGNED</span> PRIMARY <span class="hljs-keyword">KEY</span>,</span><br><span class="line">    ename <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">    sex ENUM(<span class="hljs-string">"男"</span>, <span class="hljs-string">"女"</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">    deptno <span class="hljs-built_in">INT</span> <span class="hljs-keyword">UNSIGNED</span>,</span><br><span class="line">    hiredate <span class="hljs-built_in">DATE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (deptno) <span class="hljs-keyword">REFERENCES</span> t_dept(deptno)</span><br><span class="line">);</span><br><span class="line"><span class="hljs-comment"># ENUM()规定字段值，只能在规定的字段值之内挑选一个</span></span><br><span class="line"><span class="hljs-comment"># FOREIGN KEY 规定外界约束</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="外建约束的闭环问题"><a href="#外建约束的闭环问题" class="headerlink" title="外建约束的闭环问题"></a>外建约束的闭环问题</h4><p>◆ 如果形成外键闭环，我们将无法删除任何一张表的记录。</p>
+<blockquote>
+<p>PS: 所以创建数据表的时候不推荐使用外键约束。</p>
+</blockquote>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7"><i class="fa fa-tag"></i></span>
+                    <a class="has-link-grey -link" href="/tags/MySQL/">MySQL</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/d42a67266c2d3850.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://i1.fuimg.com/695816/c88177c3e1d320ee.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/16/MySqlDML1/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">MySQL数据操纵语言学习笔记（一）</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/14/MySqlConfig/">
+                <span class="level-item">MySQL配置文件设置(三)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NTc2Ny8yMjI3OA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+<!-- 百度自动推送 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></div>
+                
+
+
+
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#数据库的范式">
+        <span class="has-mr-6">1</span>
+        <span>数据库的范式</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#第一范式：原子性">
+        <span class="has-mr-6">1.1</span>
+        <span>第一范式：原子性</span>
+        </a></li><li>
+        <a class="is-flex" href="#第二范式：唯一性">
+        <span class="has-mr-6">1.2</span>
+        <span>第二范式：唯一性</span>
+        </a></li><li>
+        <a class="is-flex" href="#第三范式：关联性">
+        <span class="has-mr-6">1.3</span>
+        <span>第三范式：关联性</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#字段约束">
+        <span class="has-mr-6">2</span>
+        <span>字段约束</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#主键约束">
+        <span class="has-mr-6">2.1</span>
+        <span>主键约束</span>
+        </a></li><li>
+        <a class="is-flex" href="#非空约束">
+        <span class="has-mr-6">2.2</span>
+        <span>非空约束</span>
+        </a></li><li>
+        <a class="is-flex" href="#唯一约束">
+        <span class="has-mr-6">2.3</span>
+        <span>唯一约束</span>
+        </a></li><li>
+        <a class="is-flex" href="#外键约束">
+        <span class="has-mr-6">2.4</span>
+        <span>外键约束</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#外建约束的闭环问题">
+        <span class="has-mr-6">2.4.1</span>
+        <span>外建约束的闭环问题</span>
+        </a></li></ul></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/avatar.png" alt="GenmCai">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        GenmCai
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Be a salted fish with a dream
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Ningbo Zhejiang</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        21
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/GenmCai" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://nbutacm.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">NBUTACM</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">nbutacm.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/ACM/">
+            <span class="level-start">
+                <span class="level-item">ACM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/MySQL/">
+            <span class="level-start">
+                <span class="level-item">MySQL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SQL/">
+            <span class="level-start">
+                <span class="level-item">SQL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/正则表达式/">
+            <span class="level-start">
+                <span class="level-item">正则表达式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/ACM/" style="font-size: 15px;">ACM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/内存管理/" style="font-size: 10px;">内存管理</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 12.5px;">正则表达式</a> <a href="/tags/线段树/" style="font-size: 15px;">线段树</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/08/19/MySql_TransactionMechanism/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySql_TransactionMechanism.jpg" alt="MySql事务机制学习笔记（一）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-19T05:27:39.000Z">2019-08-19</time></div>
+                    <a href="/2019/08/19/MySql_TransactionMechanism/" class="has-link-black-ter is-size-6">MySql事务机制学习笔记（一）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/18/MySql_data_import_export/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySql_data_import_export.jpg" alt="MySQL数据的导入与导出">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-18T15:02:42.000Z">2019-08-18</time></div>
+                    <a href="/2019/08/18/MySql_data_import_export/" class="has-link-black-ter is-size-6">MySQL数据的导入与导出</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/17/MySqlFunction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlFunction.jpg" alt="MySQL函数学习笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-17T10:45:17.000Z">2019-08-17</time></div>
+                    <a href="/2019/08/17/MySqlFunction/" class="has-link-black-ter is-size-6">MySQL函数学习笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/17/MySqlDML2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlDML2.jpg" alt="MySQL数据操纵语言学习笔记（二）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-17T05:46:34.000Z">2019-08-17</time></div>
+                    <a href="/2019/08/17/MySqlDML2/" class="has-link-black-ter is-size-6">MySQL数据操纵语言学习笔记（二）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/16/MySqlDML1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/MySqlDML1.jpg" alt="MySQL数据操纵语言学习笔记（一）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-16T13:29:17.000Z">2019-08-16</time></div>
+                    <a href="/2019/08/16/MySqlDML1/" class="has-link-black-ter is-size-6">MySQL数据操纵语言学习笔记（一）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/MySQL/">MySQL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">18</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL/">
+                        <span class="tag">MySQL</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SQL/">
+                        <span class="tag">SQL</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/内存管理/">
+                        <span class="tag">内存管理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/并查集/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/模拟/">
+                        <span class="tag">模拟</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/正则表达式/">
+                        <span class="tag">正则表达式</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/线段树/">
+                        <span class="tag">线段树</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/logo.png" alt="MySQL数据库定义语言学习笔记" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 GenmCai&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <!-- <span id="busuanzi_container_site_uv"> -->
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                <!-- </span> -->
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    <!-- 雪花特效 -->
+    <script type="text/javascript">
+        var windowWidth = $(window).width();
+        if (windowWidth > 480) {
+            document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+        }
+    </script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/nipsilon.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>

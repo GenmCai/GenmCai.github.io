@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.genmcai.com/2019/08/18/MySql_data_import_export/</loc>
+    
+    <lastmod>2019-08-28T01:42:20.141Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.genmcai.com/2019/08/19/MySql_TransactionMechanism/</loc>
+    
+    <lastmod>2019-08-28T01:39:55.518Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.genmcai.com/2019/08/17/MySqlFunction/</loc>
+    
+    <lastmod>2019-08-25T12:33:21.127Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.genmcai.com/2019/08/15/MySqlDDL1/</loc>
+    
+    <lastmod>2019-08-25T12:32:13.309Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.genmcai.com/2019/08/17/MySqlDML2/</loc>
+    
+    <lastmod>2019-08-25T12:31:54.633Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.genmcai.com/2019/08/16/MySqlDML1/</loc>
+    
+    <lastmod>2019-08-25T12:27:51.811Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.genmcai.com/2019/08/14/MySqlConfig/</loc>
+    
+    <lastmod>2019-08-25T07:19:59.333Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.genmcai.com/2019/08/14/whatSql/</loc>
+    
+    <lastmod>2019-08-25T07:14:35.590Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.genmcai.com/2019/08/08/Py_Os_DateTime/</loc>
     
     <lastmod>2019-08-18T05:15:10.406Z</lastmod>
@@ -51,7 +107,7 @@
   </url>
   
   <url>
-    <loc>https://www.genmcai.com/2019/08/03/hexo1/</loc>
+    <loc>https://www.genmcai.com/2019/08/03/hexo_DomainName/</loc>
     
     <lastmod>2019-08-17T05:04:47.161Z</lastmod>
     
