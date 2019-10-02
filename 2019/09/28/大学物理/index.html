@@ -9,7 +9,7 @@
 
 
     <meta name="description" content="大学物理公式描述质点运动的物理量位矢公式: $\vec{r} = \vec{r}(t)$ 位置矢量是描述某一时刻质点所在空间位置的物理量。">
-<meta name="keywords" content="物理,大学">
+<meta name="keywords" content="物理，大学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大学物理公式和名词整理">
 <meta property="og:url" content="https://www.genmcai.com/2019/09/28/大学物理/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="大学物理公式描述质点运动的物理量位矢公式: $\vec{r} = \vec{r}(t)$ 位置矢量是描述某一时刻质点所在空间位置的物理量。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog-image-1259552158.cos.ap-shanghai.myqcloud.com/thumbnail/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%85%AC%E5%BC%8F%E5%92%8C%E5%90%8D%E8%AF%8D%E6%95%B4%E7%90%86.png">
-<meta property="og:updated_time" content="2019-09-28T03:20:04.419Z">
+<meta property="og:updated_time" content="2019-10-02T08:31:05.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大学物理公式和名词整理">
 <meta name="twitter:description" content="大学物理公式描述质点运动的物理量位矢公式: $\vec{r} = \vec{r}(t)$ 位置矢量是描述某一时刻质点所在空间位置的物理量。">
@@ -176,7 +176,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 分钟 读完 (大约 2095 个字)
+                    17 分钟 读完 (大约 2606 个字)
                 </span>
                 
                 
@@ -252,6 +252,12 @@
 <p>定义: 物体由于运动而具有的能量，称为物体的动能。它的大小定义为物体质量与速度平方乘积的二分之一。</p>
 <h3 id="势能"><a href="#势能" class="headerlink" title="势能"></a>势能</h3><p>表示: $E_P$</p>
 <p>在物体从点A移动到点B的过程中，保守力做功总是等于某个位置函数之差，而功总是与能量变化相联系，因此，这个位置函数也应该具有能量的意义，将其称为势能函数，简称势能，以$E_p$表示，即$A = \int^B_A{F \cdot d\vec{r} = E_{pA} - E_{pB}}$。</p>
+<h3 id="冲量"><a href="#冲量" class="headerlink" title="冲量"></a>冲量</h3><p>表示: $I$(有时也记作$J$)</p>
+<p>冲量。在经典力学中，<strong>物体所受外合力的冲量等于它的动量的增量（即末动量减去初动量）</strong>，叫做动量定理。和动量是状态量不同，冲量是一个过程量。一个恒力的冲量指的是这个力与其作用时间的乘积。冲量表述了对质点作用一段时间的积累效应的物理量，是改变质点机械运动状态的原因。</p>
+<blockquote>
+<p>冲量的量纲和单位都与动量一样。($kg \cdot m/s$或$N\cdot s$).</p>
+</blockquote>
+<p>PS: <strong>一个随时间改变的力对一个物体的冲量指这个力的作用对时间的积累效果。即力对时间的积分</strong>。</p>
 <h3 id="质点的动能定理"><a href="#质点的动能定理" class="headerlink" title="质点的动能定理"></a>质点的动能定理</h3><p>物体从点A到点B，合外力对物体所作的功为</p>
 <div>
 $\displaystyle A=\int^{B}_{A}{F\cos{\theta}ds}=\int^{v_2}_{v_1}{mvdv}=\frac{1}{2}mv_2^2-\frac{1}{2}mv_1^2$
@@ -298,6 +304,11 @@ E_1 = E_2\\
 <p><strong>当作用在系统上的外力和非保守内力不做功时，或者它们所作的总功为零时，系统内物体的动能和势能可以互相转换，但它们的总和，即系统的机械能保持不变</strong>，这一结论称为<strong>机械能守恒定律</strong>。</p>
 </blockquote>
 <h3 id="能量守恒定律"><a href="#能量守恒定律" class="headerlink" title="能量守恒定律"></a>能量守恒定律</h3><p><strong>对一个孤立系统(和外界即没有物质交换，也没有能量交换的系统)来说，不论发生任何变化，各种形式的能量都可以互相转化，但它们的总和是一个常量</strong>，这一结论称为能量守恒与转化定律，简称<strong>能量守恒定律</strong>。</p>
+<h2 id="刚体力学"><a href="#刚体力学" class="headerlink" title="刚体力学"></a>刚体力学</h2><h3 id="力矩"><a href="#力矩" class="headerlink" title="力矩"></a>力矩</h3><p>公式: $\vec{M}=\vec{r} \times \vec{F}_\bot$</p>
+<p>力矩在物理学里是指作用力使物体绕着转动轴或支点转动的趋向。力矩的单位是牛顿-米。力矩能够使物体改变其旋转运动。力矩等于径向矢量与作用力的叉积。</p>
+<h3 id="转动惯量"><a href="#转动惯量" class="headerlink" title="转动惯量"></a>转动惯量</h3><p>公式: $\displaystyle J=\sum_{i=1}^{n}{\Delta{m_i}r^2}=\int_v{r^2dm}$</p>
+<p>转动惯量，是刚体绕轴转动时惯性（回转物体保持其匀速圆周运动或静止的特性）的量度，用字母I或J表示。在经典力学中，转动惯量（又称质量惯性矩，简称惯矩）通常以I 或J表示，SI 单位为 $kg \cdot m^2$。对于一个质点，$I=mr^2$，其中m是其质量，r是质点和转轴的垂直距离。</p>
+<p>PS: 转动惯量在旋转动力学中的角色相当于线性动力学中的质量，可形式地理解为一个物体对于旋转运动的惯性，用于建立角动量、角速度、力矩和角加速度等数个量之间的关系。</p>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
@@ -309,7 +320,7 @@ E_1 = E_2\\
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7"><i class="fa fa-tag"></i></span>
-                    <a class="has-link-grey -link" href="/tags/大学/">大学</a>, <a class="has-link-grey -link" href="/tags/物理/">物理</a>
+                    <a class="has-link-grey -link" href="/tags/物理，大学/">物理，大学</a>
                 </div>
             </div>
         </div>
@@ -515,21 +526,37 @@ E_1 = E_2\\
         <span class="has-mr-6">1.4.6</span>
         <span>势能</span>
         </a></li><li>
-        <a class="is-flex" href="#质点的动能定理">
+        <a class="is-flex" href="#冲量">
         <span class="has-mr-6">1.4.7</span>
+        <span>冲量</span>
+        </a></li><li>
+        <a class="is-flex" href="#质点的动能定理">
+        <span class="has-mr-6">1.4.8</span>
         <span>质点的动能定理</span>
         </a></li><li>
         <a class="is-flex" href="#质点系的动能定理">
-        <span class="has-mr-6">1.4.8</span>
+        <span class="has-mr-6">1.4.9</span>
         <span>质点系的动能定理</span>
         </a></li><li>
         <a class="is-flex" href="#机械能守恒定律">
-        <span class="has-mr-6">1.4.9</span>
+        <span class="has-mr-6">1.4.10</span>
         <span>机械能守恒定律</span>
         </a></li><li>
         <a class="is-flex" href="#能量守恒定律">
-        <span class="has-mr-6">1.4.10</span>
+        <span class="has-mr-6">1.4.11</span>
         <span>能量守恒定律</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#刚体力学">
+        <span class="has-mr-6">1.5</span>
+        <span>刚体力学</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#力矩">
+        <span class="has-mr-6">1.5.1</span>
+        <span>力矩</span>
+        </a></li><li>
+        <a class="is-flex" href="#转动惯量">
+        <span class="has-mr-6">1.5.2</span>
+        <span>转动惯量</span>
         </a></li></ul></li></ul></li></ul>
         </div>
     </div>
@@ -591,7 +618,7 @@ E_1 = E_2\\
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        15
                     </p>
                 </div>
             </div>
@@ -616,12 +643,12 @@ E_1 = E_2\\
         <ul class="menu-list">
         
             <li>
-                <a class="level is-mobile" href="http://nbutacm.com/" target="_blank">
+                <a class="level is-mobile" href="https://www.baidu.com/" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">NBUTACM</span>
+                        <span class="level-item">Baidu</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">nbutacm.com</span>
+                        <span class="level-item tag">www.baidu.com</span>
                     </span>
                 </a>
             </li>
@@ -717,7 +744,7 @@ E_1 = E_2\\
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ACM/" style="font-size: 16px;">ACM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/内存管理/" style="font-size: 10px;">内存管理</a> <a href="/tags/大学/" style="font-size: 10px;">大学</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/枚举和暴力/" style="font-size: 10px;">枚举和暴力</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 12px;">正则表达式</a> <a href="/tags/物理/" style="font-size: 10px;">物理</a> <a href="/tags/线段树/" style="font-size: 14px;">线段树</a> <a href="/tags/递推/" style="font-size: 10px;">递推</a>
+        <a href="/tags/ACM/" style="font-size: 16px;">ACM</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/内存管理/" style="font-size: 10px;">内存管理</a> <a href="/tags/并查集/" style="font-size: 10px;">并查集</a> <a href="/tags/枚举和暴力/" style="font-size: 10px;">枚举和暴力</a> <a href="/tags/模拟/" style="font-size: 10px;">模拟</a> <a href="/tags/正则表达式/" style="font-size: 12px;">正则表达式</a> <a href="/tags/物理，大学/" style="font-size: 10px;">物理，大学</a> <a href="/tags/线段树/" style="font-size: 14px;">线段树</a> <a href="/tags/递推/" style="font-size: 10px;">递推</a>
     </div>
 </div>
 
@@ -942,13 +969,6 @@ E_1 = E_2\\
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/大学/">
-                        <span class="tag">大学</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/并查集/">
                         <span class="tag">并查集</span>
                         <span class="tag is-grey">1</span>
@@ -977,8 +997,8 @@ E_1 = E_2\\
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/物理/">
-                        <span class="tag">物理</span>
+                    <a class="tags has-addons" href="/tags/物理，大学/">
+                        <span class="tag">物理，大学</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
